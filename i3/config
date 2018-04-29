@@ -164,6 +164,17 @@ mode "$mode_media_volume" {
 }
 bindsym $mod+m mode "$mode_media_volume"
 
+# Brightness controls, vim binding based
+set $brightness sudo $HOME/.config/i3/brightness_control.sh
+set $mode_brightness Brightness: Up (k), Down (j)
+mode "$mode_brightness" {
+    bindsym k exec --no-startup-id $brightness 50
+    bindsym j exec --no-startup-id $brightness -50
+
+    bindsym Escape mode "default"
+}
+bindsym $mod+n mode "$mode_brightness"
+
 # Resize window (you can also use the mouse for that)
 mode "resize" {
     bindsym h resize shrink width 10 px or 10 ppt
