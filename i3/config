@@ -4,7 +4,6 @@
 # Add all distro specific things here
 # As well as applications that you may want to switch out from time to time (e.g. which terminal)
 
-
 # application variables
 set $terminal urxvt
 set $browser google-chrome
@@ -12,15 +11,8 @@ set $browser google-chrome
 # distro specific
 set $settings-daemon mate-settings-daemon
 
-
-# start polybar
+# start polybar -- below is the regular bar config
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-
-### i3 Config proper
-
-exec --no-startup-id compton -CGb
-exec --no-startup-id redshift
-# exec --no-startup-id nm-applet
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # bar {
@@ -34,14 +26,20 @@ exec --no-startup-id redshift
 #     }
 # }
 
+### i3 Config proper
+
+exec --no-startup-id compton -CGb
+# exec --no-startup-id redshift
+# exec --no-startup-id nm-applet
+
+
 # remove title bars
 for_window [class="^.*"] border pixel 1
-
 
 # start settings daemon to get GTk theme loaded
 exec --no-startup-id $settings-daemon
 
-# set mod to Alt and Super to Windows/Command
+# set mod to Alt and sup(super) to Windows/Command
 set $mod Mod1
 set $sup Mod4
 
@@ -56,6 +54,7 @@ gaps outer 0
 smart_borders on
 
 # change Font to something readable
+# may not be necessary anymore, if using polybar
 font pango:Ubuntu Regular 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -67,7 +66,8 @@ bindsym $mod+Return exec $terminal
 # kill focused window
 bindsym $mod+Shift+Return kill
 # start dmenu for only .desktop programs
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi show run -dmenu -i -p ""'
 
 # change focus
 bindsym $mod+h focus left
@@ -75,7 +75,7 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# disable mouse focus, must use bindings
+# disable mouse focus, must use bindings or click
 focus_follows_mouse no
 
 # move focused window
@@ -139,7 +139,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 set $mode_system System: (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 
 # add sleep for lock to avoid catching the red prompt
-set $lock sleep 0.1 && $HOME/.bin/lock.sh
+set $lock sleep 0.1 && $HOME/.config/i3/lock.sh
 mode "$mode_system" {
     bindsym l exec --no-startup-id $lock, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
