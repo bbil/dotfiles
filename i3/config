@@ -175,6 +175,8 @@ mode "$mode_brightness" {
 }
 bindsym $mod+n mode "$mode_brightness"
 
+bindsym $mod+Shift+n exec --no-startup-id "killall redshift || redshift"
+
 # Resize window (you can also use the mouse for that)
 mode "resize" {
     bindsym h resize shrink width 10 px or 10 ppt
