@@ -7,37 +7,61 @@
 # application variables
 set $terminal urxvt
 set $browser google-chrome
+set $email mailspring
 
-# distro specific
-set $settings-daemon mate-settings-daemon
+# desktop variables
+set $background nitrogen --restore
+set $compositor compton -CGb
+set $dock plank
 
-# start polybar -- below is the regular bar config
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+# desktop env specific variables
+set $notify xfce4-notifyd
+set $settings xfce4-settings-manager
+set $logout xfce4-session-logout --logout
+
+# i3 variables
+# command to edit i3 config, for some reason can't use $terminal, $EDITOR or $HOME
+set $i3Edit urxvt -e sh -c "vim ~/.config/i3/config"
+
+# make sure notifications service is running, or else things be janky
+exec_always --no-startup-id systemctl --user start $notify
+# needs to be run after a delay or else the backgrounds get munged
+exec --no-startup-id sleep 1; $background
+exec --no-startup-id $compositor
 
 # Start i3bar to display a workspace bar (plus the system information i3status
-# bar {
-#     position top
-#     status_command i3status
-#     colors {
-#         background #0a0f14
-#         statusline #98d1ce
-#         # urgent_workspace to make the mode message be blue
-#         # urgent_workspace #4c7899 #285577 #ffffff
-#     }
-# }
+bar {
+    font pango:Fira Mono 10
+    position top
+
+    # Colors set up to follow solorized theme
+    colors {
+        background #002b36
+        statusline #98d1ce
+	    focused_workspace  #002b36 #285577 #ffffff
+        active_workspace   #002b36 #002b36 #ffffff
+        inactive_workspace #002b36 #002b36 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #002b36 #002b36 #ffffff
+    }
+}
 
 ### i3 Config proper
 
-exec --no-startup-id compton -CGb
-# exec --no-startup-id redshift
-# exec --no-startup-id nm-applet
+## dmenu scripts
+# take screenshot
+bindsym $mod+Shift+s exec --no-startup-id ~/.scripts/take_screenshot
 
+# application launcher
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi show run -dmenu -columns 2 -i -p ""'
 
-# remove title bars
-for_window [class="^.*"] border pixel 1
+# alt tab window switcher
+bindsym $mod+Tab exec --no-startup-id rofi -show window 
+## dmenu scripts
 
-# start settings daemon to get GTk theme loaded
-exec --no-startup-id $settings-daemon
+# remove title bars and make windows have no border
+# this looks real good when there's no gaps
+for_window [class="^.*"] border none
 
 # set mod to Alt and sup(super) to Windows/Command
 set $mod Mod1
@@ -47,16 +71,6 @@ set $sup Mod4
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-# set gaps
-# bindsym $mod+Shift+g exec gaps inner all set 15 && gaps outer all set 10
-gaps inner 10
-gaps outer 0
-smart_borders on
-
-# change Font to something readable
-# may not be necessary anymore, if using polybar
-font pango:Ubuntu Regular 9
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -65,11 +79,8 @@ bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym $mod+Shift+Return kill
-# start dmenu for only .desktop programs
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi show run -dmenu -i -p ""'
 
-# change focus
+# change focus vi
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -142,7 +153,7 @@ set $mode_system System: (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) r
 set $lock sleep 0.1 && $HOME/.config/i3/lock.sh
 mode "$mode_system" {
     bindsym l exec --no-startup-id $lock, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym e exec --no-startup-id $logout, mode "default"
     bindsym s exec --no-startup-id $lock && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $lock && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
@@ -192,41 +203,13 @@ bindsym $mod+r mode "resize"
 set $mode_application_launcher Start Application (check i3 config)
 mode "$mode_application_launcher" {
     bindsym b exec $browser, mode "default"
+    bindsym e exec $email, mode "default"
+    bindsym s exec $settings, mode "default"
+    bindsym i exec $i3Edit, mode "default"
     
     bindsym Escape mode "default"
 }
 bindsym $sup+space mode "$mode_application_launcher"
 
 
-# Gaps mode
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0
-set $mode_gaps_inner Inner Gaps: +|-|0
-bindsym $mod+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-    bindsym o mode "$mode_gaps_outer"
-    bindsym i mode "$mode_gaps_inner"
-    bindsym 0 gaps inner all set 0;gaps outer all set 0
-
-    bindsym Escape mode "default"
-}
-
-mode "$mode_gaps_inner" {
-    bindsym plus gaps inner all plus 5
-    bindsym minus gaps inner all minus 5
-    bindsym 0 gaps inner all set 0 
-
-    bindsym Escape mode "default"
-    bindsym "o" mode "$mode_gaps_outer"
-}
-
-mode "$mode_gaps_outer" {
-    bindsym plus gaps outer all plus 5
-    bindsym minus gaps outer all minus 5
-    bindsym 0 gaps outer all set 0
-    
-    bindsym Escape mode "default"
-    bindsym "i" mode "$mode_gaps_inner"
-}
 

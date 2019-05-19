@@ -61,9 +61,13 @@ URxvt.cursorUnderline:      false
 URxvt.pointerBlank:         true
 
 ! special
-URxvt.foreground:   #a6a28c
-URxvt.background:   #20201d
-URxvt.cursorColor:  #a6a28c
+*background: #002b36
+*foreground: #657b83
+!!*fading: 40
+*fadeColor: #002b36
+*cursorColor: #93a1a1
+*pointerColorBackground: #586e75
+*pointerColorForeground: #93a1a1
 
 ! black
 URxvt.color0:       #20201d
@@ -97,12 +101,10 @@ URxvt.color14:      #1fad83
 URxvt.color7:       #a6a28c
 URxvt.color15:      #fefbec
 
-
-
 ! ROFI
 !
-rofi.font:              DejaVu Sans Mono 12
-rofi.location:          0
+rofi.font:              Fira Code 14
+rofi.location:          2
 rofi.color-enabled:     true
 
 rofi.color-window:      argb:dc111111, argb:dc111111, #00ffff
@@ -110,15 +112,15 @@ rofi.color-normal:      argb:00333333, #ffffff, argb:00333333, argb:00333333, #0
 rofi.color-urgent:      argb:00333333, #ffffff, argb:00333333, argb:00333333, #00ffff
 rofi.color-active:      argb:00333333, #ffffff, argb:00333333, argb:00333333, #00ffff
 rofi.separator-style:   solid
-rofi.fullscreen:        true
-rofi.padding:           130
+rofi.fullscreen:        false
+rofi.padding:           0
 rofi.hide-scrollbar:    true
 rofi.fake-transparency: false
 
 rofi.fixed-num-lines:   false
-rofi.line-margin:       20
-rofi.yoffset:           0
+rofi.line-margin:       0
+rofi.line-padding:	    10
+rofi.yoffset:          	0
 rofi.xoffset:           0
-rofi.width:             1366
-rofi.opacity:           80
-
+rofi.width:             1300
+rofi.opacity:		    80
