@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Script requires a screenshots directory in Pictures
+if [ ! -d ~/Pictures/screenshots ]; then
+  mkdir -p ~/Pictures/screenshots;
+fi
+
+# command to copy png to clipboard
+toclipboard='xclip -selection clipboard -target image/png -i'
+
+# first rofi prompt -- ask what type of screenshot
+options="current window\nselect area\neverything"
+chosen="$(echo -e $options | rofi -show -dmenu -format i -i -p 'Take Screenshot')"
+echo $chosen
+
+case $chosen in
+  0)
+    # current window
+    scrot -u ~/tmp.png -d 1
+    ;;
+  1)
+    # select an area
+    scrot -s ~/tmp.png -d 1
+    ;;
+  2)
+    # everything
+    scrot ~/tmp.png -d 1
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+
+# second rofi prompt -- where to store it, default to clipboard, otherwise a png filename
+options="clipboard"
+prompt="Enter file name (.png)"
+chosen="$(echo $options | rofi -show -dmenu -format "i;f" -i -p "$prompt")"
+
+IFS=';' read to_index to_filename  <<< $chosen
+
+case $to_index in
+  0)
+    # move image onto clipboard and cleanup
+    $toclipboard < ~/tmp.png && rm ~/tmp.png
+    notify-send -t 3000 "Image copied to clipboard"
+    ;;
+  *)
+    # move file to Pictures/screenshots no cleanup required after
+    mv ~/tmp.png ~/Pictures/screenshots/$to_filename.png
+    notify-send -t 3000 "Image located at ~/Pictures/screenshots/$to_filename.png"
+    ;;
+esac
+
