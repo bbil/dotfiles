@@ -34,10 +34,13 @@ URxvt.internalBorder:       3
 URxvt.lineSpace:            0
 
 ! Fonts
-URxvt.allow_bold:           false
-/URxvt URxvt.font:                 -URxvt-terminus-medium-r-normal-URxvt-12-120-72-72-c-60-iso8859-1 URxvt/
-URxvtURxvtfont: xft:Monospace:pixelsize=14
-URxvtURxvtboldFont: xft:Monospace:pixelsize=14
+URxvt.font: xft:DejaVu Sans Mono for Powerline:style=Regular:size=10
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Mod4-k: command:\033]720;1\007
+URxvt.keysym.Mod4-j: command:\033]721;1\007
+URxvt.iso14755: False    
+
 
 ! Fix font space
 URxvtURxvtletterSpace: -1
