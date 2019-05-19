@@ -1,5 +1,5 @@
 echo "Copy i3 configs"
-cp -vb ~/dotfiles/i3/* ~/.config/.i3/
+mkdir ~/.config/.i3 && cp -vb ~/dotfiles/i3/* ~/.config/.i3/
  
 echo "Copy Xdefaults"
 cp -vb ~/dotfiles/xorg/.Xdefaults ~/.Xdefaults
