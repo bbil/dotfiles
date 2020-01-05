@@ -7,6 +7,12 @@ cp -vb ~/dotfiles/xorg/.Xdefaults ~/.Xdefaults
 echo "copying scripts"
 cp -r ~/dotfiles/.scripts/ ~
 
+echo "copy bspwmrc"
+mkdir ~/.config/bspwm && cp -vb ~/dotfiles/bspwm/bspwmrc ~/.config/bspwm/
+
+echo "copy sxhkdrc"
+mkdir ~/.config/sxhkd && cp -vb ~/dotfiles/sxhkd/sxhkdrc ~/.confgi/sxhkd/
+
 echo "DONE!"
 echo "Things to do:"
 
