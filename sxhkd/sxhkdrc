@@ -4,7 +4,7 @@
 
 # terminal emulator (add -e zsh once it's installed)
 super + Return
-	urxvt
+	urxvt -e zsh
 
 # program launcher
 super + d
@@ -84,7 +84,7 @@ super + {_,shift + }{1-9,0}
 
 # rotate
 super + {_, shift +}r
-	bspc node --rotate {90,-90}
+	bspc node --rotate {90,180}
 
 # reset the splits at the selected node
 super + e
