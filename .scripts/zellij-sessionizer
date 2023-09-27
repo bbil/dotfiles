@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# Thank you Primeagen! Stolen from him
+#
+# Finds folders in hard-coded list of locations
+# Opens these in fzf for searching capabilities
+#
+# When one is selected:
+# 1. Trim to just the directory basename
+# 2. Find or Create tmux session with this name
+# 3. Attach to the session
+
+# Intended use:
+# tmux keybinding Prefix + f
+# call script shell directly on start of workday
+#
+
+    # selected=$(find ~/work/builds ~/projects ~/ ~/work ~/personal ~/personal/yt -mindepth 1 -maxdepth 1 -type d | fzf)
+    # selected=$( | fzf-tmux --reverse)
+
+selected=$(
+    (
+        zellij ls;
+        find  ~/work ~/.config ~/git -mindepth 1 -maxdepth 1 -type d
+    ) |
+        fzf-tmux -p --reverse
+        # fzf --reverse
+        # fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}}
+        # fzf-tmux --reverse
+)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+# selected is a path
+if [[ $selected == *"/"* ]]; then
+  session=$(basename "$selected" | tr . _)
+else
+  session=$selected
+fi
+
+zellij attach --create $session
+
+#########
+# Zellij does not allow createing a session at a specific directory
+# means for my purposes, I can't really use Zelij...
+# tmux still does this better
+#########
+
+# existing_sessions=($(zellij ls | sed 's/ (current)//'))
+#
+# if [[ " ${existing_sessions[@]} " =~ " ${session} " ]]; then
+#   # Attach to existing session
+#   zellij a $session_name
+# else
+#   # Create new session and change directory
+#   (cd "$dir_choice" && zellij -s "$session_name")
+# fi
+

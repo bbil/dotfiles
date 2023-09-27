@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+# Thank you Primeagen! Stolen from him
+#
+# Finds folders in hard-coded list of locations
+# Opens these in fzf for searching capabilities
+#
+# When one is selected:
+# 1. Trim to just the directory basename
+# 2. Find or Create tmux session with this name
+# 3. Attach to the session
+
+    
+# Use sed to show ~ instead of $HOME
+# But because tmux doesn't understand how to open directories with ~, need to reverse the process after selection
+# TODO is there a better way to do this, does fzf allow to display a different value than what the underlying value is?
+
+selected=$(
+    (
+        tmux list-sessions -F ":#{session_name}";
+        find  ~/work ~/.config ~/git -mindepth 1 -maxdepth 1 -type d | sed "s|$HOME|~|g"
+    ) |
+        fzf-tmux -p --prompt="|> " --pointer="|>" --reverse | sed "s|~|$HOME|g"
+        # fzf --reverse
+        # fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}}
+        # fzf-tmux --reverse
+)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+# Get or create session
+if [[ $selected == *":"* ]]; then
+  # selected comes from list-sessions
+  session=$(echo $selected | awk '{print $1}')
+  session=${session//:/}
+else
+  # RESULT is a path
+  session=$(basename "$selected" | tr . _)
+
+  if ! tmux has-session -t=$session 2> /dev/null; then
+    tmux new-session -d -s $session -c "$selected"
+  fi
+fi
+
+
+# tmux_running=$(pgrep tmux)
+#
+# # if tmux is not running -- create new session you are automatically attached
+# if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+#     tmux new-session -s $selected_name -c $selected
+#     exit 0
+# fi
+#
+# # Create session if it does not exist
+# if ! tmux has-session -t=$selected_name 2> /dev/null; then
+#     tmux new-session -ds $selected_name -c $selected
+# fi
+
+# if we are currently in tmux -- based on $TMUX being set, switch-client in place
+# otherwise we need to use attach command
+if [[ $TMUX ]]; then
+    tmux switch-client -t $session
+else
+    tmux attach -t $session
+fi
+
