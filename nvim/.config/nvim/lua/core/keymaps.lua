@@ -45,7 +45,7 @@ vim.keymap.set('n', '<leader>td', ':tabd<CR>', { desc = '[D]elete' })
 wk.register({ t = { name = "tab/tree" }}, { prefix = '<leader>' })
 
 for i=1, 9 do
-  vim.keymap.set('n', '<leader>t' .. i, i .. 'gt', { desc = i })
+  vim.keymap.set('n', '<leader>t' .. i, i .. 'gt', { desc = tostring(i) })
 end
 
 -- Buffers
