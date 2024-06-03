@@ -1,3 +1,22 @@
+-- basic telescope configuration
+local function toggle_telescope(harpoon_files)
+  local conf = require("telescope.config").values
+  local file_paths = {}
+  for _, item in ipairs(harpoon_files.items) do
+    table.insert(file_paths, item.value)
+  end
+
+  require("telescope.pickers").new({}, {
+    prompt_title = "Harpoon",
+    finder = require("telescope.finders").new_table({
+      results = file_paths,
+    }),
+    previewer = conf.file_previewer({}),
+    sorter = conf.generic_sorter({}),
+  }):find()
+end
+
+
 return {
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -17,7 +36,8 @@ return {
     'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function(_, _opts)
-      require('telescope').setup({
+      telescope = require('telescope')
+      telescope.setup({
         defaults = {
           prompt_prefix = "|>",
           selection_caret = "|>",
@@ -55,6 +75,7 @@ return {
       })
       -- Enable telescope fzf native, if installed
       pcall(require('telescope').load_extension, 'fzf')
+      telescope.load_extension("workspaces")
 
       -- See `:help telescope.builtin`
       local builtin = require('telescope.builtin')
@@ -88,20 +109,23 @@ return {
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[K]eymaps' })
 
-      wk.register({ s = { name = 'Fuzzy Find' }}, { prefix = '<leader>' })
+      wk.register({ s = { name = 'Fuzzy Find' } }, { prefix = '<leader>' })
     end
   },
 
   -- Move between current "working" files fast
   {
     'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
 
-    config = function(_, opts)
-      local ui = require('harpoon.ui')
-      local mark = require('harpoon.mark')
-
+    config = function()
       local wk = require('which-key')
+      wk.register({ h = { name = 'Harpoon' } }, { prefix = '<leader>' })
+
+      local harpoon = require('harpoon')
+      local extensions = require('harpoon.extensions')
+      harpoon:setup()
 
       local nmap = function(keys, func, desc)
         if desc then
@@ -111,39 +135,52 @@ return {
         vim.keymap.set('n', keys, func, { desc = desc })
       end
 
-      nmap('<leader>hu', ui.toggle_quick_menu, 'UI')
-      nmap('<leader>hh', mark.toggle_file, 'Mark')
+      nmap('<leader>hu', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, 'UI')
+      nmap('<leader>hh', function() harpoon:list():append() end, 'Mark')
 
       local function create_nav_function(index)
         return function()
-          ui.nav_file(index)
+          harpoon:list():select(index)
         end
       end
 
       local nav_funcs = {}
-      for i=1, 5 do
+      for i = 1, 5 do
         nav_funcs[i] = create_nav_function(i)
       end
 
+      nmap('<A-a>', nav_funcs[1], "Nav 1")
+      nmap('<A-s>', nav_funcs[2], "Nav 2")
+      nmap('<A-d>', nav_funcs[3], "Nav 3")
+      nmap('<A-f>', nav_funcs[4], "Nav 4")
       nmap('<leader>ha', nav_funcs[1], 'Nav 1')
       nmap('<leader>hs', nav_funcs[2], 'Nav 2')
       nmap('<leader>hd', nav_funcs[3], 'Nav 3')
       nmap('<leader>hf', nav_funcs[4], 'Nav 4')
       nmap('<leader>hg', nav_funcs[5], 'Nav 5')
 
-      wk.register({ h = { name = 'Harpoon' }}, { prefix = '<leader>' })
+      nmap('<leader>hp', function() harpoon:list():prev() end, 'Prev')
+      nmap('<leader>hn', function() harpoon:list():next() end, 'Next')
 
-      require('harpoon').setup({
-        menu = {
-          width = 120,
-          height = 50
-        }
+      nmap('<leader>sm', function() toggle_telescope(harpoon:list()) end, "open")
+
+      harpoon:extend(extensions.builtins.navigate_with_number())
+
+      harpoon:extend({
+        UI_CREATE = function(cx)
+          vim.keymap.set("n", "<C-v>", function()
+            harpoon.ui:select_menu_item({ vsplit = true })
+          end, { buffer = cx.bufnr })
+
+          vim.keymap.set("n", "<C-x>", function()
+            harpoon.ui:select_menu_item({ split = true })
+          end, { buffer = cx.bufnr })
+
+          vim.keymap.set("n", "<C-t>", function()
+            harpoon.ui:select_menu_item({ tabedit = true })
+          end, { buffer = cx.bufnr })
+        end,
       })
-
-      -- :Telescope harpoon marks (probably will never use this)
-      require("telescope").load_extension('harpoon')
     end
   },
 }
-
-

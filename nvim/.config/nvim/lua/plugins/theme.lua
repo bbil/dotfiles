@@ -19,18 +19,20 @@ return {
     },
     config = function(_, opts)
       require('catppuccin').setup(opts)
-      vim.cmd.colorscheme('catppuccin-frappe')
+      vim.cmd.colorscheme('catppuccin-macchiato')
     end
   },
 
+  -- alternate colorschemes use :Telescope colorscheme to switch
   'shaunsingh/solarized.nvim',
+  'navarasu/onedark.nvim', -- config = function() require('onedark').setup({ style = 'darker' }) vim.cmd.colorscheme('onedark') end },
 
   {
     'levouh/tint.nvim',
-    config = function(_, _opts)
+    config = function(_, _)
       require('tint').setup({
         tint = -15,                                                 -- Darken colors, use a positive value to brighten
-        saturation = 0.9,                                           -- Saturation to preserve
+        saturation = 0.7,                                           -- Saturation to preserve
         transforms = require("tint").transforms.SATURATE_TINT,      -- Showing default behavior, but value here can be predefined set of transforms
         tint_background_colors = true,                              -- Tint background portions of highlight groups
         highlight_ignore_patterns = { "WinSeparator", "Status.*" }, -- Highlight group patterns to ignore, see `string.find`

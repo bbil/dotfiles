@@ -8,26 +8,22 @@ return {
         icons_enabled = true,
         theme = 'catppuccin',
         -- comment separators to get back Powerline font style
-        section_separators = { left = '', right = '' },
-        component_separators = { left = '', right = '' },
-        -- component_separators = '|',
-        -- section_separators = '',
+        component_separators = '|',
+        section_separators = '',
         disabled_filetypes = { 'NvimTree' },
       },
       sections = {
-        lualine_c = { 'buffers' },
-        lualine_y = { 'filetype' },
-      },
-      winbar = {
-        lualine_a = {
+        lualine_c = {
           {
             'filename',
             path = 1,
             shorting_target = 20,
           },
-        }
+        },
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {}
       },
     },
   },
 }
-

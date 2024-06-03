@@ -10,12 +10,13 @@ return {
   { 'christoomey/vim-tmux-navigator', lazy = false },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim',           opts = {} },
 
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
+    main = "ibl",
+    opts = {},
   },
 
   -- "gc" to comment visual regions/lines
@@ -29,17 +30,44 @@ return {
     opts = {
       search = {
         multi_window = true,
-        mode = function(str)
-          return "\\<" .. str
-        end,
+      },
+      modes = {
+        search = { enabled = true }
       }
     },
     keys = {
-      { "s", mode = { "n", "o", "x" }, function() require("flash").jump() end, desc = "Flash" },
+      { "s", mode = { "n", "o", "x" }, function() require("flash").jump() end,       desc = "Flash" },
       { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
+      {
+        "R",
+        mode = { "o", "x" },
+        function() require("flash").treesitter_search() end,
+        desc = "Treesitter Search"
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function() require("flash").toggle() end,
+        desc = "Toggle Flash Search"
+      },
     },
   },
+
+  {
+    'xorid/swap-split.nvim',
+    opts = {
+      ignore_filetypes = { 'NvimTree' }
+    },
+    keys = {
+      -- Overwrite swap current with next keybinding
+      { '<C-w>x', mode = 'n', '<cmd>SwapSplit<CR>', desc = "swap" },
+    },
+    config = function(_, opts)
+      require('swap-split').setup(opts)
+
+      -- Set color of Picker to match default picker of NvimTree
+      vim.api.nvim_command('hi SwapSplitStatusLine guifg=#ededed guibg=#4493c8 gui=bold ctermfg=White ctermbg=Cyan')
+    end
+  }
 }

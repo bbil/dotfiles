@@ -36,31 +36,10 @@ return {
     },
   },
 
-  -- Autocompletion
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      { 'L3MON4D3/LuaSnip' },
-    },
-    config = function()
-      local cmp = require('cmp')
-
-      cmp.setup({
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-        mapping = cmp.mapping.preset.insert({
-          ['<CR>'] = cmp.mapping.confirm({select = false}),
-        })
-      })
-    end
-  },
-
   -- non-Mason LSPs
   {
     'elixir-tools/elixir-tools.nvim',
-    ft = 'elixir',
+    -- ft = 'elixir',
     version = "*",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
@@ -71,12 +50,21 @@ return {
       local elixir = require("elixir")
 
       elixir.setup({
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-        on_attach = function(client, buffer)
-          require('plugins.lsp.keymaps').on_attach(client, buffer)
-        end,
+        -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        nextls = {
+          enable = false,
+          -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
+          on_attach = function(client, buffer)
+            require('plugins.lsp.keymaps').on_attach(client, buffer)
+          end
+        },
+        elixirls = {
+          enable = true,
+          on_attach = function(client, buffer)
+            require('plugins.lsp.keymaps').on_attach(client, buffer)
+          end,
+        }
       })
     end
   },
 }
-

@@ -94,9 +94,6 @@ return {
       { "<leader>tt", mode = 'n', ':NvimTreeToggle<cr>', desc = '[T]ree toggle', silent = true, noremap = true },
       { "<leader>tf", mode = 'n', ':NvimTreeFindFile<cr>', desc = '[T] [F]ind file', silent = true, noremap = true },
     },
-    -- config = function()
-    --   require("nvim-tree").setup {}
-    -- end,
   },
 }
 
