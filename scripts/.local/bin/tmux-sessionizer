@@ -10,7 +10,6 @@
 # 2. Find or Create tmux session with this name
 # 3. Attach to the session
 
-    
 # Use sed to show ~ instead of $HOME
 # But because tmux doesn't understand how to open directories with ~, need to reverse the process after selection
 # TODO is there a better way to do this, does fzf allow to display a different value than what the underlying value is?
@@ -21,9 +20,6 @@ selected=$(
         find  ~/work ~/.config ~/git -mindepth 1 -maxdepth 1 -type d | sed "s|$HOME|~|g"
     ) |
         fzf-tmux -p --prompt="|> " --pointer="|>" --reverse | sed "s|~|$HOME|g"
-        # fzf --reverse
-        # fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}}
-        # fzf-tmux --reverse
 )
 
 if [[ -z $selected ]]; then
@@ -32,7 +28,8 @@ fi
 
 # Get or create session
 if [[ $selected == *":"* ]]; then
-  # selected comes from list-sessions
+  # selected comes from list-sessions, so we know this session exists
+  # therefore, skip tmux new-session
   session=$(echo $selected | awk '{print $1}')
   session=${session//:/}
 else
