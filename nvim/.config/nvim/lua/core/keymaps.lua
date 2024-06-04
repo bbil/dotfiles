@@ -15,10 +15,6 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Visual mode move lines up/down
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
-
 -- Jump around page, but keep cursor in center of screen
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
@@ -26,9 +22,6 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 -- Remap C-e/y to do paragraph jump, i.e. { or }, but disable jump list
 vim.keymap.set('n', '<C-e>', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>', { silent = true })
 vim.keymap.set('n', '<C-y>', ':<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>', { silent = true })
-
--- nnoremap } :<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>
--- nnoremap { :<C-u>execute "keepjumps norm! " . v:count1 . "{"<CR>
 
 -- Keep cursor in middle when navigating search terms
 vim.keymap.set('n', 'n', 'nzzzv')

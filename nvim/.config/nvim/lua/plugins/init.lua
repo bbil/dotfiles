@@ -12,18 +12,11 @@ return {
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',           opts = {} },
 
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    main = "ibl",
-    opts = {},
-  },
-
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',          opts = {} },
 
   -- Delete all unmodified buffers
-  { 'numtostr/BufOnly.nvim', cmd = 'BufOnly' },
+  { 'numtostr/BufOnly.nvim',          cmd = 'BufOnly' },
 
   {
     'folke/flash.nvim',
@@ -31,14 +24,12 @@ return {
       search = {
         multi_window = true,
       },
-      modes = {
-        search = { enabled = true }
-      }
     },
+
     keys = {
       { "s", mode = { "n", "o", "x" }, function() require("flash").jump() end,       desc = "Flash" },
       { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
+      { "r",         mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
       {
         "R",
         mode = { "o", "x" },
