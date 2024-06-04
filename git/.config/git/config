@@ -2,7 +2,7 @@
 	defaultBranch = main
 [user]
 	name = bbil
-	email = brandonbil.xyz
+	email = me@brandonbil.xyz
 [push]
 	default = current
 	autoSetupRemote = true
@@ -32,3 +32,13 @@
 [column]
 	ui = auto
 
+# Originally from mac config, not entirely sure what it's for
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+# ---- includes for device specific configs ----
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig-work
