@@ -1,5 +1,15 @@
 return {
   {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function(_, _)
+      vim.cmd.colorscheme('tokyonight-moon')
+    end
+  },
+
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
@@ -17,10 +27,10 @@ return {
         mason = true,
       }
     },
-    config = function(_, opts)
-      require('catppuccin').setup(opts)
-      vim.cmd.colorscheme('catppuccin-macchiato')
-    end
+    -- config = function(_, opts)
+    --   require('catppuccin').setup(opts)
+    --   vim.cmd.colorscheme('catppuccin-macchiato')
+    -- end
   },
 
   -- alternate colorschemes use :Telescope colorscheme to switch
@@ -48,4 +58,3 @@ return {
     end
   },
 }
-

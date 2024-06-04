@@ -135,7 +135,7 @@ return {
       end
 
       nmap('<leader>hu', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, 'UI')
-      nmap('<leader>hh', function() harpoon:list():append() end, 'Mark')
+      nmap('<leader>hh', function() harpoon:list():add() end, 'Mark')
 
       local function create_nav_function(index)
         return function()
