@@ -14,26 +14,24 @@ return {
 
       require('mini.surround').setup({
         mappings = {
-          add = 'sa', -- Add surrounding in Normal and Visual modes
-          delete = 'ysd', -- Delete surrounding
-          find = 'ysf', -- Find surrounding (to the right)
-          find_left = 'ysF', -- Find surrounding (to the left)
-          highlight = 'ysh', -- Highlight surrounding
-          replace = 'ysr', -- Replace surrounding
+          add = 'sa',             -- Add surrounding in Normal and Visual modes
+          delete = 'ysd',         -- Delete surrounding
+          find = 'ysf',           -- Find surrounding (to the right)
+          find_left = 'ysF',      -- Find surrounding (to the left)
+          highlight = 'ysh',      -- Highlight surrounding
+          replace = 'ysr',        -- Replace surrounding
           update_n_lines = 'ysn', -- Update `n_lines`
 
-          suffix_last = 'l', -- Suffix to search with "prev" method
-          suffix_next = 'n', -- Suffix to search with "next" method
+          suffix_last = 'l',      -- Suffix to search with "prev" method
+          suffix_next = 'n',      -- Suffix to search with "next" method
         },
       })
 
       local files = require('mini.files')
       files.setup()
 
-      -- { "<leader>tt", mode = 'n', ':NvimTreeToggle<cr>', desc = '[T]ree toggle', silent = true, noremap = true },
-      -- { "<leader>tf", mode = 'n', ':NvimTreeFindFile<cr>', desc = '[T] [F]ind file', silent = true, noremap = true },
-
       vim.keymap.set('n', '<leader>tt', files.open, { desc = '[T]ree open' })
+      vim.keymap.set('n', '<leader>tf', function() MiniFiles.open(vim.api.nvim_buf_get_name(0), false) end, { desc = 'Tree [f]ind' })
 
       require('mini.pairs').setup()
 
