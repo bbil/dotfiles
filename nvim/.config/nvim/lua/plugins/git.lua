@@ -1,6 +1,4 @@
 return {
-  'tpope/vim-fugitive',      -- looking to remove this
-  'tpope/vim-rhubarb',      -- looking to remove this
   'rhysd/git-messenger.vim', -- <leader>gm
   {
     'NeogitOrg/neogit',
