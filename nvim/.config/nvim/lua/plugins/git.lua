@@ -1,15 +1,28 @@
 return {
   'rhysd/git-messenger.vim', -- <leader>gm
+
   {
-    'NeogitOrg/neogit',
+    'kdheepak/lazygit.nvim',
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
-      'sindrets/diffview.nvim',
-      'ibhagwan/fzf-lua',
     },
-    config = true
+    keys = {
+      { '<leader>gl', '<cmd>LazyGit<cr>', desc = 'LazyGit' }
+    },
+    config = function ()
+      require('telescope').load_extension('lazygit')
+    end
   },
+
   {
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -36,17 +49,12 @@ return {
         end, { expr = true })
 
         -- Actions
-        map('n', '<leader>gs', gs.stage_hunk, { desc = "Stage Hunk" })
-        map('n', '<leader>gr', gs.reset_hunk, { desc = "Reset Hunk" })
-        map('v', '<leader>gs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-        map('v', '<leader>gr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
-        map('n', '<leader>gu', gs.undo_stage_hunk, { desc = "Undo Stage" })
         map('n', '<leader>gp', gs.preview_hunk, { desc = "Preview Hunk" })
         map('n', '<leader>gb', function() gs.blame_line { full = true } end, { desc = "Blame Line" })
-        map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = "Git blame Line" })
+        map('n', '<leader>gtb', gs.toggle_current_line_blame, { desc = "Git blame Line" })
         map('n', '<leader>gd', gs.diffthis, { desc = "Diff" })
         map('n', '<leader>gD', function() gs.diffthis('~') end, { desc = "Diff (with ~)" })
-        map('n', '<leader>td', gs.toggle_deleted, { desc = "Git deleted lines" })
+        map('n', '<leader>gtd', gs.toggle_deleted, { desc = "Git deleted lines" })
 
         -- Text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
