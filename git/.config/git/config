@@ -1,5 +1,7 @@
 [init]
 	defaultBranch = main
+[core]
+	excludesFile = ~/.config/git/.gitignore
 [user]
 	name = bbil
 	email = me@brandonbil.xyz
