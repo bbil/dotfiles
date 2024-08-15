@@ -182,4 +182,13 @@ return {
       })
     end
   },
+
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "-", mode = { "n" }, "<CMD>Oil<CR>", desc = "Oil" },
+    },
+  }
 }

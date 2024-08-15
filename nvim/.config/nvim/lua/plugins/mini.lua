@@ -6,11 +6,12 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      require('mini.animate').setup()
+      -- require('mini.animate').setup()
       require('mini.bufremove').setup()
       require('mini.cursorword').setup()
       require('mini.indentscope').setup()
       require('mini.move').setup()
+      require('mini.pairs').setup()
 
       require('mini.surround').setup({
         mappings = {
@@ -27,13 +28,12 @@ return {
         },
       })
 
-      local files = require('mini.files')
-      files.setup()
+      -- local files = require('mini.files')
+      -- files.setup()
+      --
+      -- vim.keymap.set('n', '<leader>tt', files.open, { desc = '[T]ree open' })
+      -- vim.keymap.set('n', '<leader>tf', function() MiniFiles.open(vim.api.nvim_buf_get_name(0), false) end, { desc = 'Tree [f]ind' })
 
-      vim.keymap.set('n', '<leader>tt', files.open, { desc = '[T]ree open' })
-      vim.keymap.set('n', '<leader>tf', function() MiniFiles.open(vim.api.nvim_buf_get_name(0), false) end, { desc = 'Tree [f]ind' })
-
-      require('mini.pairs').setup()
 
       -- local notify = require('mini.notify')
       --
