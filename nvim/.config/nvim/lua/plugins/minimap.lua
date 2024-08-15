@@ -9,7 +9,9 @@ return {
 
       local wk = require('which-key')
 
-      wk.register({ m = { name = 'minimap' } }, { prefix = '<leader>' })
+      wk.add({
+        {'<leader>m', group = 'minimap'}
+      })
       -- default keybindings are fine
       -- <leader>mo - open the minimap
       -- <leader>mc - close the minimap

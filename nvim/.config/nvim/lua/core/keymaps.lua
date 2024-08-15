@@ -28,7 +28,7 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- yank relative filepath to system clipboard
-vim.keymap.set('n', '<leader>yf', '<cmd>let @+ = expand("%")<cr>')
+vim.keymap.set('n', '<leader>fy', '<cmd>let @+ = expand("%")<cr>')
 
 -- Convenience mappings to yank to system clipboard register
 vim.keymap.set('n', '<leader>y', '\"+y')
@@ -48,7 +48,10 @@ vim.keymap.set('n', '<leader>tn', ':tabn<CR>', { desc = '[N]ext' })
 vim.keymap.set('n', '<leader>tp', ':tabN<CR>', { desc = '[P]rev' })
 vim.keymap.set('n', '<leader>td', ':tabd<CR>', { desc = '[D]elete' })
 
-wk.register({ t = { name = "tab/tree" } }, { prefix = '<leader>' })
+
+wk.add({
+  {"<leader>t", group = "tab"}
+})
 
 for i = 1, 9 do
   vim.keymap.set('n', '<leader>t' .. i, i .. 'gt', { desc = tostring(i) })
@@ -60,7 +63,9 @@ vim.keymap.set('n', '<leader>bp', ':bp<CR>', { desc = '[P]rev' })
 vim.keymap.set('n', '<leader>bd', ':bd<CR>', { desc = '[D]elete' })
 vim.keymap.set('n', '<leader>bo', ':BufOnly<CR>', { desc = '[D]elete all' })
 
-wk.register({ t = { name = "buffer" } }, { prefix = '<leader>' })
+wk.add({
+  {"<leader>b", group = "buffer"}
+})
 
 -- Quick Fix
 vim.keymap.set('n', '<leader>co', ':copen<CR>', { desc = 'Open' })
@@ -72,7 +77,9 @@ vim.keymap.set('n', '<leader>cP', ':cnewer<CR>', { desc = 'newer' })
 vim.keymap.set('n', '[c', ':cp<CR>', { desc = ':cprevious' })
 vim.keymap.set('n', ']c', ':cn<CR>', { desc = ':cnext' })
 
-wk.register({ c = { name = "QuickFix" } }, { prefix = '<leader>' })
+wk.add({
+  {'<leader>c', group = 'quickfix'}
+})
 
 
 -- [[ Highlight on yank ]]

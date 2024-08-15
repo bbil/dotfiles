@@ -108,7 +108,9 @@ return {
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[K]eymaps' })
 
-      wk.register({ s = { name = 'Fuzzy Find' } }, { prefix = '<leader>' })
+      wk.add({
+        {"<leader>s", group = "search"}
+      })
     end
   },
 
@@ -120,7 +122,9 @@ return {
 
     config = function()
       local wk = require('which-key')
-      wk.register({ h = { name = 'Harpoon' } }, { prefix = '<leader>' })
+      wk.add({
+        {'<leader>h', group = 'harpoon'}
+      })
 
       local harpoon = require('harpoon')
       local extensions = require('harpoon.extensions')
