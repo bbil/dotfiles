@@ -67,4 +67,19 @@ return {
       })
     end
   },
+
+  -- Helper to make signature help stay visible
+  {
+    'ray-x/lsp_signature.nvim',
+    event = 'VeryLazy',
+    main = 'lsp_signature',
+    opts = {
+      floating_window = true,
+      bind = true,
+      handler_opts = {
+        border = 'rounded',
+      },
+    },
+    config = true,
+  }
 }
