@@ -1,0 +1,24 @@
+# FONT
+font-family = Fira Code
+font-family-bold = Fira Code Bold
+font-family-italic = Fira Code Italic
+font-family-bold-italic = Fira Code Bold Italic
+
+font-size = 12
+
+# Open Ghostty with properties
+
+command = zsh
+title = " "
+
+# Mac Specific
+
+# macos-titlebar-style = " "
+macos-option-as-alt = true
+
+# Theming & Window
+
+theme = dark:catppuccin-macchiato,light:catppuccin-latte
+
+window-decoration = true
+
