@@ -17,7 +17,7 @@
 selected=$(
     (
         tmux list-sessions -F ":#{session_name}";
-        find  ~/work ~/.config ~/git -mindepth 1 -maxdepth 1 -type d | sed "s|$HOME|~|g"
+        find  ~/work ~/git -mindepth 1 -maxdepth 1 -type d | sed "s|$HOME|~|g"
     ) |
         fzf-tmux -p 50% --reverse | sed "s|~|$HOME|g"
 )
