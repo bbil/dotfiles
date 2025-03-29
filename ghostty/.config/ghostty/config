@@ -1,27 +1,19 @@
-# FONT
+# Font -- use `ghostty +list-fonts` to see what fonts ghostty is aware of
 font-family = FiraCode Nerd Font
 font-family-bold = FiraCode Nerd Font Bold
-# font-family-italic = FiraCode Nerd Font Italic
-# font-family-bold-italic = FiraCode Nerd Font Bold Italic
-
-# -> --> ===
 
 font-size = 12
 
 # Open Ghostty with properties
 
 command = zsh
-title = " "
 
 # Mac Specific
-
-# macos-titlebar-style = " "
 macos-option-as-alt = true
 
 # Theming & Window
-background-opacity = 0.95
-
+# sets zero decoration (may need to use keybind for window manager to move window around)
+window-decoration = none
+background-opacity = 0.90
 theme = dark:catppuccin-macchiato,light:catppuccin-latte
-
-window-decoration = true
 
