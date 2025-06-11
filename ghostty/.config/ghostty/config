@@ -1,6 +1,14 @@
 # Font -- use `ghostty +list-fonts` to see what fonts ghostty is aware of
-font-family = FiraCode Nerd Font
-font-family-bold = FiraCode Nerd Font Bold
+
+# Linux?
+# font-family = FiraCode Nerd Font
+# font-family-bold = FiraCode Nerd Font Bold
+
+# Mac
+font-family = Fira Code
+font-family-bold = Fira Code Bold
+font-family-italic = Fira Code Italic
+font-family-bold-italic = Fira Code Bold Italic
 
 font-size = 12
 
@@ -15,5 +23,7 @@ macos-option-as-alt = true
 # sets zero decoration (may need to use keybind for window manager to move window around)
 window-decoration = none
 background-opacity = 0.90
+
 theme = dark:catppuccin-macchiato,light:catppuccin-latte
+window-theme = system
 
