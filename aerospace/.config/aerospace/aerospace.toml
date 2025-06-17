@@ -111,8 +111,8 @@ automatically-unhide-macos-hidden-apps = false
 
     # Named workspaces
     # Note: Need to be careful about MacOS keybinds around CMD
-    cmd-c = 'workspace Chat'
-    cmd-shift-c = 'move-node-to-workspace Chat'
+    cmd-g = 'workspace Chat'
+    cmd-shift-g = 'move-node-to-workspace Chat'
     
     cmd-b = 'workspace Browser'
     cmd-shift-b = 'move-node-to-workspace Browser'
