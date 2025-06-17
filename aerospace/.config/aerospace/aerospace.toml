@@ -124,9 +124,9 @@ automatically-unhide-macos-hidden-apps = false
     cmd-shift-m = 'move-node-to-workspace Meetings'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-    cmd-tab = 'workspace-back-and-forth'
+    cmd-esc = 'workspace-back-and-forth'
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-    cmd-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+    cmd-shift-esc = 'move-workspace-to-monitor --wrap-around next'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     cmd-shift-semicolon = 'mode service'
