@@ -6,7 +6,9 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+# after-startup-command = [
+#     'exec-and-forget borders active_color=0xff0aa6f5 width=2.0'
+# ]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -48,12 +50,12 @@ automatically-unhide-macos-hidden-apps = false
     preset = 'qwerty'
 
 [gaps]
-    inner.horizontal = 8
-    inner.vertical =   8
-    outer.left =       8
-    outer.bottom =     8
-    outer.top =        8
-    outer.right =      8
+    inner.horizontal = 4
+    inner.vertical =   4
+    outer.left =       4
+    outer.bottom =     4
+    outer.top =        4
+    outer.right =      4
 
 # Keybinds guide:
 # All possible keys:
@@ -73,70 +75,70 @@ automatically-unhide-macos-hidden-apps = false
 
 [mode.main.binding]
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-    cmd-slash = 'layout tiles horizontal vertical'
-    cmd-semicolon = 'layout accordion horizontal vertical'
+    alt-slash = 'layout tiles horizontal vertical'
+    alt-semicolon = 'layout accordion horizontal vertical'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    cmd-h = 'focus left'
-    cmd-j = 'focus down'
-    cmd-k = 'focus up'
-    cmd-l = 'focus right'
+    alt-h = 'focus left'
+    alt-j = 'focus down'
+    alt-k = 'focus up'
+    alt-l = 'focus right'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
-    cmd-shift-h = 'move left'
-    cmd-shift-j = 'move down'
-    cmd-shift-k = 'move up'
-    cmd-shift-l = 'move right'
+    alt-shift-h = 'move left'
+    alt-shift-j = 'move down'
+    alt-shift-k = 'move up'
+    alt-shift-l = 'move right'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     # Generic numbered workspaces
-    cmd-1 = 'workspace 1'
-    cmd-2 = 'workspace 2'
-    cmd-3 = 'workspace 3'
-    cmd-4 = 'workspace 4'
-    cmd-5 = 'workspace 5'
-    cmd-6 = 'workspace 6'
-    cmd-7 = 'workspace 7'
-    cmd-8 = 'workspace 8'
-    cmd-9 = 'workspace 9'
-    cmd-shift-1 = 'move-node-to-workspace 1'
-    cmd-shift-2 = 'move-node-to-workspace 2'
-    cmd-shift-3 = 'move-node-to-workspace 3'
-    cmd-shift-4 = 'move-node-to-workspace 4'
-    cmd-shift-5 = 'move-node-to-workspace 5'
-    cmd-shift-6 = 'move-node-to-workspace 6'
-    cmd-shift-7 = 'move-node-to-workspace 7'
-    cmd-shift-8 = 'move-node-to-workspace 8'
-    cmd-shift-9 = 'move-node-to-workspace 9'
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+    alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
+    alt-8 = 'workspace 8'
+    alt-9 = 'workspace 9'
+    alt-shift-1 = 'move-node-to-workspace 1'
+    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-5 = 'move-node-to-workspace 5'
+    alt-shift-6 = 'move-node-to-workspace 6'
+    alt-shift-7 = 'move-node-to-workspace 7'
+    alt-shift-8 = 'move-node-to-workspace 8'
+    alt-shift-9 = 'move-node-to-workspace 9'
 
     # Named workspaces
-    # Note: Need to be careful about MacOS keybinds around CMD
-    cmd-g = 'workspace Chat'
-    cmd-shift-g = 'move-node-to-workspace Chat'
+    # Note: Need to be careful about MacOS keybinds around alt
+    alt-s = 'workspace Chat'
+    alt-shift-s = 'move-node-to-workspace Chat'
     
-    cmd-b = 'workspace Browser'
-    cmd-shift-b = 'move-node-to-workspace Browser'
+    alt-b = 'workspace Browser'
+    alt-shift-b = 'move-node-to-workspace Browser'
 
-    cmd-n = 'workspace Notes'
-    cmd-shift-n = 'move-node-to-workspace Notes'
+    alt-n = 'workspace Notes'
+    alt-shift-n = 'move-node-to-workspace Notes'
 
-    cmd-m = 'workspace Meetings'
-    cmd-shift-m = 'move-node-to-workspace Meetings'
+    alt-m = 'workspace Meetings'
+    alt-shift-m = 'move-node-to-workspace Meetings'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-    cmd-esc = 'workspace-back-and-forth'
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-    cmd-shift-esc = 'move-workspace-to-monitor --wrap-around next'
+    alt-tab = 'workspace-back-and-forth'
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-    cmd-shift-semicolon = 'mode service'
-    cmd-shift-r = 'mode resize'
+    alt-shift-semicolon = 'mode service'
+    alt-shift-r = 'mode resize'
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.resize.binding]
     # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-    cmd-down = 'resize smart -50'
-    cmd-up = 'resize smart +50'
+    alt-down = 'resize smart -50'
+    alt-up = 'resize smart +50'
     esc = 'mode main'
 
 [mode.service.binding]
@@ -148,7 +150,7 @@ automatically-unhide-macos-hidden-apps = false
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
     #s = ['layout sticky tiling', 'mode main']
 
-    cmd-shift-h = ['join-with left', 'mode main']
-    cmd-shift-j = ['join-with down', 'mode main']
-    cmd-shift-k = ['join-with up', 'mode main']
-    cmd-shift-l = ['join-with right', 'mode main']
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']
