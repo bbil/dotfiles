@@ -24,6 +24,6 @@ macos-option-as-alt = true
 window-decoration = none
 background-opacity = 0.90
 
-theme = dark:catppuccin-macchiato,light:catppuccin-latte
+theme = dark:Catppuccin Macchiato,light:Catppuccin Latte
 window-theme = system
 
