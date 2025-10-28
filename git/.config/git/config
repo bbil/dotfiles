@@ -1,6 +1,7 @@
 [init]
 	defaultBranch = main
 [core]
+	editor = nvim
 	excludesFile = ~/.config/git/.gitignore
 [user]
 	name = bbil
