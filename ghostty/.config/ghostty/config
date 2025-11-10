@@ -27,3 +27,5 @@ background-opacity = 0.90
 theme = dark:Catppuccin Macchiato,light:Catppuccin Latte
 window-theme = system
 
+custom-shader = shaders/cursor_smear.glsl
+
