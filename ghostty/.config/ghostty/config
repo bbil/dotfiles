@@ -29,3 +29,4 @@ window-theme = system
 
 custom-shader = shaders/cursor_smear.glsl
 
+keybind = shift+enter=text:\x1b\r
