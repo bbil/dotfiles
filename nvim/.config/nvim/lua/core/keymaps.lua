@@ -1,5 +1,3 @@
-local wk = require('which-key')
-
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -48,11 +46,6 @@ vim.keymap.set('n', '<leader>tn', ':tabn<CR>', { desc = '[N]ext' })
 vim.keymap.set('n', '<leader>tp', ':tabN<CR>', { desc = '[P]rev' })
 vim.keymap.set('n', '<leader>td', ':tabd<CR>', { desc = '[D]elete' })
 
-
-wk.add({
-  {"<leader>t", group = "tab"}
-})
-
 for i = 1, 9 do
   vim.keymap.set('n', '<leader>t' .. i, i .. 'gt', { desc = tostring(i) })
 end
@@ -63,9 +56,6 @@ vim.keymap.set('n', '<leader>bp', ':bp<CR>', { desc = '[P]rev' })
 vim.keymap.set('n', '<leader>bd', ':bd<CR>', { desc = '[D]elete' })
 vim.keymap.set('n', '<leader>bo', ':BufOnly<CR>', { desc = '[D]elete all' })
 
-wk.add({
-  {"<leader>b", group = "buffer"}
-})
 
 -- Quick Fix
 vim.keymap.set('n', '<leader>co', ':copen<CR>', { desc = 'Open' })
@@ -76,11 +66,6 @@ vim.keymap.set('n', '<leader>cN', ':colder<CR>', { desc = 'Older' })
 vim.keymap.set('n', '<leader>cP', ':cnewer<CR>', { desc = 'newer' })
 vim.keymap.set('n', '[c', ':cp<CR>', { desc = ':cprevious' })
 vim.keymap.set('n', ']c', ':cn<CR>', { desc = ':cnext' })
-
-wk.add({
-  {'<leader>c', group = 'quickfix'}
-})
-
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -98,3 +83,4 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+

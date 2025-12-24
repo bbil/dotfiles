@@ -1,0 +1,81 @@
+{
+  "plugins": {
+    "BufOnly.nvim": {
+      "rev": "30579c2851743b00c4547c324a16f2c1cfa5a41c",
+      "src": "https://github.com/numtostr/BufOnly.nvim.git"
+    },
+    "catppuccin": {
+      "rev": "ce8d176faa4643e026e597ae3c31db59b63cef09",
+      "src": "https://github.com/catppuccin/nvim.git"
+    },
+    "dashboard-nvim": {
+      "rev": "0775e567b6c0be96d01a61795f7b64c1758262f6",
+      "src": "https://github.com/nvimdev/dashboard-nvim.git"
+    },
+    "flash.nvim": {
+      "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
+      "src": "https://github.com/folke/flash.nvim.git"
+    },
+    "git-messenger.vim": {
+      "rev": "fd124457378a295a5d1036af4954b35d6b807385",
+      "src": "https://github.com/rhysd/git-messenger.vim.git"
+    },
+    "gitsigns.nvim": {
+      "rev": "5813e4878748805f1518cee7abb50fd7205a3a48",
+      "src": "https://github.com/lewis6991/gitsigns.nvim.git"
+    },
+    "harpoon": {
+      "rev": "87b1a3506211538f460786c23f98ec63ad9af4e5",
+      "src": "https://github.com/ThePrimeagen/harpoon.git",
+      "version": "'harpoon2'"
+    },
+    "lualine.nvim": {
+      "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
+      "src": "https://github.com/nvim-lualine/lualine.nvim.git"
+    },
+    "mini.nvim": {
+      "rev": "7e55c3d2c04da134085a31156196836f80a89982",
+      "src": "https://github.com/echasnovski/mini.nvim.git"
+    },
+    "nvim-numbertoggle": {
+      "rev": "796af12a1e2aed6faba9be08e6fb5d472bab29de",
+      "src": "https://github.com/sitiom/nvim-numbertoggle.git"
+    },
+    "oil.nvim": {
+      "rev": "756dec855b4811f2d27f067a3aca477f368d99f5",
+      "src": "https://github.com/stevearc/oil.nvim.git"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "src": "https://github.com/nvim-lua/plenary.nvim.git"
+    },
+    "snacks.nvim": {
+      "rev": "fe7cfe9800a182274d0f868a74b7263b8c0c020b",
+      "src": "https://github.com/folke/snacks.nvim.git"
+    },
+    "swap-split.nvim": {
+      "rev": "e488365cc11bad251bdc71bf1a3f2f106d795456",
+      "src": "https://github.com/xorid/swap-split.nvim.git"
+    },
+    "tint.nvim": {
+      "rev": "586e87f00c8b0f5e857cefe10839e41f3e8c6d01",
+      "src": "https://github.com/levouh/tint.nvim.git"
+    },
+    "tokyonight.nvim": {
+      "rev": "5da1b76e64daf4c5d410f06bcb6b9cb640da7dfd",
+      "src": "https://github.com/folke/tokyonight.nvim.git"
+    },
+    "vim-sleuth": {
+      "rev": "be69bff86754b1aa5adcbb527d7fcd1635a84080",
+      "src": "https://github.com/tpope/vim-sleuth.git"
+    },
+    "vim-tmux-navigator": {
+      "rev": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a",
+      "src": "https://github.com/christoomey/vim-tmux-navigator.git"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
+    }
+  }
+}

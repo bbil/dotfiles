@@ -1,49 +1,14 @@
-return {
-  {
-    'echasnovski/mini.nvim',
-    version = '*',
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      -- require('mini.animate').setup()
-      require('mini.bufremove').setup()
-      require('mini.cursorword').setup()
-      require('mini.indentscope').setup()
-      require('mini.move').setup()
-      require('mini.pairs').setup()
+vim.pack.add({ 'https://github.com/echasnovski/mini.nvim.git' })
 
-      require('mini.surround').setup({
-        mappings = {
-          add = 'gsa',             -- Add surrounding in Normal and Visual modes
-          delete = 'gsd',         -- Delete surrounding
-          find = 'gsf',           -- Find surrounding (to the right)
-          find_left = 'gsF',      -- Find surrounding (to the left)
-          highlight = 'gsh',      -- Highlight surrounding
-          replace = 'gsr',        -- Replace surrounding
-          update_n_lines = 'ysn', -- Update `n_lines`
+require('mini.bufremove').setup()
+require('mini.cursorword').setup()
+require('mini.indentscope').setup()
+require('mini.move').setup()
+require('mini.pairs').setup()
+require('mini.surround').setup()
+require('mini.icons').setup()
 
-          suffix_last = 'l',      -- Suffix to search with "prev" method
-          suffix_next = 'n',      -- Suffix to search with "next" method
-        },
-      })
+-- Have mini.icons mimic another icon provider
+-- So that other plugins with integration with it can use mini.icons
+MiniIcons.mock_nvim_web_devicons()
 
-      -- local files = require('mini.files')
-      -- files.setup()
-      --
-      -- vim.keymap.set('n', '<leader>tt', files.open, { desc = '[T]ree open' })
-      -- vim.keymap.set('n', '<leader>tf', function() MiniFiles.open(vim.api.nvim_buf_get_name(0), false) end, { desc = 'Tree [f]ind' })
-
-
-      -- local notify = require('mini.notify')
-      --
-      -- notify.setup()
-      --
-      -- vim.notify = notify.make_notify({
-      --   ERROR = { duration = 5000 },
-      --   WARN = { duration = 3000 },
-      --   INFO = { duration = 4000 },
-      -- })
-    end
-  },
-}
