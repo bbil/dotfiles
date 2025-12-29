@@ -1,13 +1,10 @@
 vim.pack.add({
   'https://github.com/nvim-lualine/lualine.nvim.git',
-  'https://github.com/nvimdev/dashboard-nvim.git',
   'https://github.com/levouh/tint.nvim.git',
   -- below here is colorschemes
   'https://github.com/folke/tokyonight.nvim.git',
   { src = 'https://github.com/catppuccin/nvim.git', name = 'catppuccin' },
 })
-
-require('dashboard').setup()
 
 require('tint').setup({
   tint = -15,                                                 -- Darken colors, use a positive value to brighten
