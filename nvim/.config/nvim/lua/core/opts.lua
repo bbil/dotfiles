@@ -67,3 +67,18 @@ vim.api.nvim_create_user_command('ToggleFoldMethod', function()
     vim.cmd("normal! zx")
   end)
 end, {})
+
+-- Customize diagnostic severity to use icons
+local severity = vim.diagnostic.severity
+
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [severity.ERROR] = " ",
+      [severity.WARN] = " ",
+      [severity.HINT] = "󰠠 ",
+      [severity.INFO] = " ",
+    },
+  },
+})
+

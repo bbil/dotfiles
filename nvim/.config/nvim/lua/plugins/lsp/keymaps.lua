@@ -1,57 +1,28 @@
-local M = {}
+local km = vim.keymap -- just an alias
 
----@type PluginLspKeys
-M._keys = nil
+-- keybinds setup on LspAttach
+-- Note: 'K' keymap for vim.lsp.buf.hover is done automatically
+--       There are also some other default 'g'-prefixed keymaps that are aleady
+--       overwritten by snacks-picker configuration (has default behaviour if no LSP configured)
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    local opts = { buffer = ev.buffer, silent = true }
 
----@return (LazyKeys|{has?:string})[]
-function M.get()
-  ---@class PluginLspKeys
-  -- stylua: ignore
-  M._keys = M._keys or {
-    { '<leader>li', '<cmd>LspInfo<cr>' },
-    { '<leader>ld', vim.diagnostic.open_float,                 desc = 'Line Diagnostics' },
+    opts.desc = 'Signature Help'
+    km.set('n', 'gK', vim.lsp.buf.signature_help, opts)
 
-    { 'gd',         '<cmd>Telescope lsp_definitions<cr>',      desc = 'Goto Definition' },
-    { 'gr',         '<cmd>Telescope lsp_references<cr>',       desc = 'References' },
-    { 'gD',         vim.lsp.buf.declaration,                   desc = 'Goto Declaration' },
-    { 'gI',         '<cmd>Telescope lsp_implementations<cr>',  desc = 'Goto Implementation' },
-    { 'gy',         '<cmd>Telescope lsp_type_definitions<cr>', desc = 'Goto Type Definition' },
-    { 'K',          vim.lsp.buf.hover,                         desc = 'Hover' },
-    { 'gK',         vim.lsp.buf.signature_help,                desc = 'Signature Help',      has = 'signatureHelp' },
-    { '<leader>la', vim.lsp.buf.code_action,                   desc = 'Code Action',         mode = { 'n', 'v' },       has = 'codeAction' },
-    { '<leader>lc', vim.lsp.codelens.run,                      desc = 'Run Code Lens',       mode = { 'n', 'v' },       has = 'codeAction' },
-    { '<leader>lC', vim.lsp.codelens.refresh,                  desc = 'Refresh Code Action', mode = { 'n', 'v' },       has = 'codeAction' },
-    -- { "<leader>lR", LazyVim.lsp.rename_file,                   desc = "Rename File",         mode = { "n" },            has = { "workspace/didRenameFiles", "workspace/willRenameFiles" } },
-    { "<leader>lr", vim.lsp.buf.rename,                        desc = "Rename",              has = "rename" },
-    -- { "<leader>lA", LazyVim.lsp.action.source,                 desc = "Source Action",       has = "codeAction" },
-    { '<leader>lf', vim.lsp.buf.format,                        desc = 'Format Document',     has = 'documentFormatting' },
-  }
-  return M._keys
-end
+    opts.desc = 'Code Action'
+    km.set('n', '<leader>la', vim.lsp.buf.code_action, opts)
 
-function M.on_attach(client, buffer)
-  local Keys = require('lazy.core.handler.keys')
-  local keymaps = {} ---@type table<string,LazyKeys|{has?:string}>
+    opts.desc = 'Run Code Lens'
+    km.set('n', '<leader>la', vim.lsp.codelens.run, opts)
 
-  for _, value in ipairs(M.get()) do
-    local keys = Keys.parse(value)
-    if keys.rhs == vim.NIL or keys.rhs == false then
-      keymaps[keys.id] = nil
-    else
-      keymaps[keys.id] = keys
-    end
+    opts.desc = 'Rename'
+    km.set('n', '<leader>lr', vim.lsp.buf.rename, opts)
+
+    opts.desc = 'Format Document'
+    km.set('n', '<leader>lf', vim.lsp.buf.format, opts)
   end
+})
 
-  for _, keys in pairs(keymaps) do
-    if not keys.has or client.server_capabilities[keys.has .. 'Provider'] then
-      local opts = Keys.opts(keys)
-      ---@diagnostic disable-next-line: no-unknown
-      opts.has = nil
-      opts.silent = true
-      opts.buffer = buffer
-      vim.keymap.set(keys.mode or 'n', keys.lhs, keys.rhs, opts)
-    end
-  end
-end
-
-return M

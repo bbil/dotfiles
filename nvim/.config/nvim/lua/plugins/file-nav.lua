@@ -1,11 +1,11 @@
 vim.pack.add({
-  {src = 'https://github.com/ThePrimeagen/harpoon.git', version = 'harpoon2'},
+  { src = 'https://github.com/ThePrimeagen/harpoon.git', version = 'harpoon2' },
   'https://github.com/stevearc/oil.nvim.git',
   'https://github.com/xorid/swap-split.nvim.git'
 })
 
 -- Set color of Picker to match default picker of NvimTree
-vim.keymap.set('n', '<C-w>x', '<CMD>SwapSplit<CR>', {desc = "swap"})
+vim.keymap.set('n', '<C-w>x', '<CMD>SwapSplit<CR>', { desc = "swap" })
 vim.api.nvim_command('hi SwapSplitStatusLine guifg=#ededed guibg=#4493c8 gui=bold ctermfg=White ctermbg=Cyan')
 
 local harpoon = require('harpoon')
@@ -67,4 +67,3 @@ harpoon:extend({
 require('oil').setup()
 
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = "Oil" })
-

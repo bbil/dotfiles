@@ -11,6 +11,8 @@ vim.pack.add({
   'https://github.com/numtostr/BufOnly.nvim.git',
 })
 
+require('plugins.lsp')
+
 require('plugins.mini')
 
 require('plugins.snacks')
@@ -21,13 +23,13 @@ require('plugins.file-nav')
 require('plugins.git')
 require('plugins.ui')
 require('plugins.flash')
+require('plugins.completion')
 
 -- User command to update packages
 vim.api.nvim_create_user_command(
-  'PackUpdate', 
+  'PackUpdate',
   function()
     vim.pack.update()
   end,
-  {desc = 'Update packages'}
+  { desc = 'Update packages' }
 )
-

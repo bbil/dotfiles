@@ -21,4 +21,4 @@ require('snacks').setup({
   picker = { enabled = true },
 })
 
-vim.keymap.set('n', '<leader>gl', function() Snacks.lazygit() end, {desc = 'lazygit'})
+vim.keymap.set('n', '<leader>gl', function() Snacks.lazygit() end, { desc = 'lazygit' })

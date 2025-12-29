@@ -11,4 +11,3 @@ require('mini.icons').setup()
 -- Have mini.icons mimic another icon provider
 -- So that other plugins with integration with it can use mini.icons
 MiniIcons.mock_nvim_web_devicons()
-

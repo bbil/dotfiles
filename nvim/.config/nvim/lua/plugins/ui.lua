@@ -4,7 +4,7 @@ vim.pack.add({
   'https://github.com/levouh/tint.nvim.git',
   -- below here is colorschemes
   'https://github.com/folke/tokyonight.nvim.git',
-  {src = 'https://github.com/catppuccin/nvim.git', name = 'catppuccin'},
+  { src = 'https://github.com/catppuccin/nvim.git', name = 'catppuccin' },
 })
 
 require('dashboard').setup()
@@ -110,7 +110,7 @@ end
 ins_left {
   -- mode component
   function()
-    return '▊ ⬢' 
+    return '▊ ⬢'
   end,
   color = function()
     -- auto change color according to neovims mode
@@ -209,4 +209,3 @@ ins_right {
 }
 
 lualine.setup(config)
-

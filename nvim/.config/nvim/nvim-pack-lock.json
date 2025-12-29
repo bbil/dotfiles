@@ -4,6 +4,11 @@
       "rev": "30579c2851743b00c4547c324a16f2c1cfa5a41c",
       "src": "https://github.com/numtostr/BufOnly.nvim.git"
     },
+    "blink.cmp": {
+      "rev": "b19413d214068f316c78978b08264ed1c41830ec",
+      "src": "https://github.com/saghen/blink.cmp.git",
+      "version": "1.0.0 - 2.0.0"
+    },
     "catppuccin": {
       "rev": "ce8d176faa4643e026e597ae3c31db59b63cef09",
       "src": "https://github.com/catppuccin/nvim.git"
@@ -15,6 +20,10 @@
     "flash.nvim": {
       "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
       "src": "https://github.com/folke/flash.nvim.git"
+    },
+    "friendly-snippets": {
+      "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
+      "src": "https://github.com/rafamadriz/friendly-snippets.git"
     },
     "git-messenger.vim": {
       "rev": "fd124457378a295a5d1036af4954b35d6b807385",
@@ -33,9 +42,21 @@
       "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
       "src": "https://github.com/nvim-lualine/lualine.nvim.git"
     },
+    "mason-lspconfig.nvim": {
+      "rev": "4cfe411526a7a99c18281135e8b4765ae6330d15",
+      "src": "https://github.com/mason-org/mason-lspconfig.nvim.git"
+    },
+    "mason.nvim": {
+      "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
+      "src": "https://github.com/mason-org/mason.nvim.git"
+    },
     "mini.nvim": {
       "rev": "e7a8e5a0920df1435172d42fb32e474bbb30d021",
       "src": "https://github.com/echasnovski/mini.nvim.git"
+    },
+    "nvim-lspconfig": {
+      "rev": "d696e36d5792daf828f8c8e8d4b9aa90c1a10c2a",
+      "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-numbertoggle": {
       "rev": "796af12a1e2aed6faba9be08e6fb5d472bab29de",
