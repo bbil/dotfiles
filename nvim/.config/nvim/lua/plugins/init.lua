@@ -3,7 +3,7 @@ vim.pack.add({
   'https://github.com/nvim-lua/plenary.nvim.git',
 })
 
--- simple plugins that don't need config
+-- simple plugins that don't need config or setup
 vim.pack.add({
   'https://github.com/tpope/vim-sleuth.git',
   'https://github.com/sitiom/nvim-numbertoggle.git',
@@ -11,26 +11,44 @@ vim.pack.add({
   'https://github.com/numtostr/BufOnly.nvim.git',
 })
 
-require('plugins.lsp')
+local M = {}
 
-require('plugins.mini')
+local function create_pack_update_cmd()
+  vim.api.nvim_create_user_command(
+    'PackUpdate',
+    function()
+      vim.pack.update()
+    end,
+    { desc = 'Update packages' }
+  )
+end
 
-require('plugins.snacks')
-require('plugins.snacks-picker')
+local modules = {
+  'plugins.completion',
+  'plugins.file-nav',
+  'plugins.flash',
+  'plugins.git',
+  'plugins.lsp',
+  'plugins.mini',
+  'plugins.snacks',
+  'plugins.snacks-picker',
+  'plugins.treesitter',
+  'plugins.ui',
+  'plugins.which-key',
+}
 
-require('plugins.which-key')
-require('plugins.file-nav')
-require('plugins.git')
-require('plugins.ui')
-require('plugins.flash')
-require('plugins.completion')
-require('plugins.treesitter')
+function M.setup()
+  create_pack_update_cmd()
 
--- User command to update packages
-vim.api.nvim_create_user_command(
-  'PackUpdate',
-  function()
-    vim.pack.update()
-  end,
-  { desc = 'Update packages' }
-)
+  -- load all modules and call setup function
+  for _, mod in ipairs(modules) do
+    local ok, plugin = pcall(require, mod)
+    if ok and plugin.setup then
+      plugin.setup()
+    else
+      vim.notify("Failed to load plugin module: " .. mod, vim.log.levels.ERROR)
+    end
+  end
+end
+
+return M

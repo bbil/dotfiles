@@ -1,84 +1,94 @@
--- Disable netrw (default tree)
-vim.g.loaded_netrw       = 1
-vim.g.loaded_netrwPlugin = 1
+local M = {}
 
--- Turn off wrap by default
-vim.opt.wrap = false
+local function disable_netrw()
+  -- Disable netrw (default tree)
+  vim.g.loaded_netrw       = 1
+  vim.g.loaded_netrwPlugin = 1
+end
 
--- Highlight current line
-vim.opt.cursorline       = true
+local function editor_ui()
+  vim.opt.wrap          = false
 
--- Set highlight on search
-vim.opt.hlsearch         = false
-vim.opt.incsearch        = true
+  vim.opt.cursorline    = true
 
--- Make line numbers default
--- Relative number is being set automatically by nvim-numbertoggle
-vim.opt.number           = true
--- vim.opt.relativenumber = true
+  vim.opt.hlsearch      = false
+  vim.opt.incsearch     = true
+  vim.opt.number        = true
 
--- keep characters at top/bottom of screen when scrolling
-vim.opt.scrolloff        = 16
+  -- keep characters at top/bottom of screen when scrolling
+  vim.opt.scrolloff     = 16
 
--- Enable mouse mode
-vim.opt.mouse            = 'a'
+  vim.opt.mouse         = 'a'
 
--- Enable break indent
-vim.opt.breakindent      = true
+  vim.opt.breakindent   = true
 
--- Save undo history
-vim.opt.undofile         = true
+  vim.opt.termguicolors = true
+end
 
--- Case-insensitive searching UNLESS \C or capital in search
-vim.opt.ignorecase       = true
-vim.opt.smartcase        = true
+local function editor_experience()
+  -- Save undo history
+  vim.opt.undofile    = true
 
--- Keep signcolumn on by default
-vim.opt.signcolumn       = 'yes'
+  -- Case-insensitive searching UNLESS \C or capital in search
+  vim.opt.ignorecase  = true
+  vim.opt.smartcase   = true
 
--- Decrease update time
-vim.opt.updatetime       = 250
-vim.opt.timeout          = true
-vim.opt.timeoutlen       = 300
+  -- Keep signcolumn on by default
+  vim.opt.signcolumn  = 'yes'
 
--- Set completeopt to have a better completion experience
-vim.opt.completeopt      = 'menuone,noselect'
+  -- Decrease update time
+  vim.opt.updatetime  = 250
+  vim.opt.timeout     = true
+  vim.opt.timeoutlen  = 300
 
--- NOTE: You should make sure your terminal supports this
-vim.opt.termguicolors    = true
+  -- Set completeopt to have a better completion experience
+  vim.opt.completeopt = 'menuone,noselect'
+end
 
 -- Fold using TreeSitter; fallback to indent with :ToggleFoldMethod
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr   = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldenable = false
+local function folds()
+  vim.opt.foldmethod = "expr"
+  vim.opt.foldexpr   = "v:lua.vim.treesitter.foldexpr()"
+  vim.opt.foldenable = false
 
-vim.api.nvim_create_user_command('ToggleFoldMethod', function()
-  if vim.wo.foldmethod == "expr" then
-    vim.wo.foldmethod = "indent"
-    print("Folding: Switched to Indent")
-  else
-    vim.wo.foldmethod = "expr"
-    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    print("Folding: Switched to Treesitter")
-  end
+  vim.api.nvim_create_user_command('ToggleFoldMethod', function()
+    if vim.wo.foldmethod == "expr" then
+      vim.wo.foldmethod = "indent"
+      print("Folding: Switched to Indent")
+    else
+      vim.wo.foldmethod = "expr"
+      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      print("Folding: Switched to Treesitter")
+    end
 
-  -- Force Neovim to re-evaluate folds
-  vim.schedule(function()
-    vim.cmd("normal! zx")
-  end)
-end, {})
+    -- Force Neovim to re-evaluate folds
+    vim.schedule(function()
+      vim.cmd("normal! zx")
+    end)
+  end, {})
+end
 
--- Customize diagnostic severity to use icons
-local severity = vim.diagnostic.severity
+local function diagnostics()
+  local severity = vim.diagnostic.severity
 
-vim.diagnostic.config({
-  signs = {
-    text = {
-      [severity.ERROR] = " ",
-      [severity.WARN] = " ",
-      [severity.HINT] = "󰠠 ",
-      [severity.INFO] = " ",
+  vim.diagnostic.config({
+    signs = {
+      text = {
+        [severity.ERROR] = " ",
+        [severity.WARN] = " ",
+        [severity.HINT] = "󰠠 ",
+        [severity.INFO] = " ",
+      },
     },
-  },
-})
+  })
+end
 
+function M.setup()
+  disable_netrw()
+  editor_ui()
+  editor_experience()
+  folds()
+  diagnostics()
+end
+
+return M

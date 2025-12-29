@@ -6,29 +6,36 @@ vim.pack.add({ 'https://github.com/folke/snacks.nvim.git' })
 --   * dashbaord
 --   * lazygit floating window
 
-require('snacks').setup({
-  bigfile = { enabled = false },
-  dashboard = {
-    -- default dashboard config other than turning off startup section crash from unmmet deps
-    -- https://github.com/folke/snacks.nvim/issues/1778 (closed by bot)
-    enabled = true,
-    sections = {
-      { section = "header" },
-      { section = "keys",  gap = 1, padding = 1 },
-      -- { section = "startup" },
+local M = {}
+
+function M.setup()
+  require('snacks').setup({
+    bigfile = { enabled = false },
+    dashboard = {
+      -- default dashboard config other than turning off startup section crash from unmmet deps
+      -- https://github.com/folke/snacks.nvim/issues/1778 (closed by bot)
+      enabled = true,
+      sections = {
+        { section = "header" },
+        { section = "keys",  gap = 1, padding = 1 },
+        -- { section = "startup" },
+      },
     },
-  },
-  explorer = { enabled = false },
-  indent = { enabled = false },
-  input = { enabled = false },
-  notifier = { enabled = false },
-  quickfile = { enabled = false },
-  scope = { enabled = false },
-  scroll = { enabled = false },
-  statuscolumn = { enabled = false },
-  words = { enabled = false },
+    explorer = { enabled = false },
+    indent = { enabled = false },
+    input = { enabled = false },
+    notifier = { enabled = false },
+    quickfile = { enabled = false },
+    scope = { enabled = false },
+    scroll = { enabled = false },
+    statuscolumn = { enabled = false },
+    words = { enabled = false },
 
-  picker = { enabled = true },
-})
+    picker = { enabled = true },
+  })
 
-vim.keymap.set('n', '<leader>gl', function() Snacks.lazygit() end, { desc = 'lazygit' })
+  vim.keymap.set('n', '<leader>gl', function() Snacks.lazygit() end, { desc = 'lazygit' })
+end
+
+return M
+

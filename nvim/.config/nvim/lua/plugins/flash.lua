@@ -1,15 +1,28 @@
 vim.pack.add({ 'https://github.com/folke/flash.nvim.git' })
 
-local flash = require('flash')
+local M = {}
 
-flash.setup({
-  search = {
-    multi_window = true,
-  },
-})
+function M.setup()
+  local flash = require('flash')
+  local km = vim.keymap
 
-vim.keymap.set({ 'n', 'o', 'x' }, 's', function() flash.jump() end, { desc = "Flash" })
-vim.keymap.set({ 'n', 'o', 'x' }, 'S', function() flash.treesitter() end, { desc = "Flash Treesitter" })
-vim.keymap.set('o', 'r', function() flash.remote() end, { desc = "Remote Flash" })
-vim.keymap.set({ 'o', 'x' }, 'R', function() flash.treesitter_search() end, { desc = "Treesitter Search" })
-vim.keymap.set('c', '<C-s>', function() flash.toggle() end, { desc = "Toggle Flash Search" })
+  flash.setup({
+    search = {
+      multi_window = true,
+    },
+    modes = {
+      -- disable f/t/F/T override
+      char = {
+        enabled = false,
+      },
+    },
+  })
+
+  km.set({ 'n', 'o', 'x' }, 's', function() flash.jump() end, { desc = "Flash" })
+  km.set({ 'n', 'o', 'x' }, 'S', function() flash.treesitter() end, { desc = "Flash Treesitter" })
+  km.set('o', 'r', function() flash.remote() end, { desc = "Remote Flash" })
+  km.set({ 'o', 'x' }, 'R', function() flash.treesitter_search() end, { desc = "Treesitter Search" })
+  km.set('c', '<C-s>', function() flash.toggle() end, { desc = "Toggle Flash Search" })
+end
+
+return M

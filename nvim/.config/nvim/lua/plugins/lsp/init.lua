@@ -9,10 +9,16 @@ vim.pack.add({
   -- 'https://github.com/ray-x/lsp_signature.nvim.git'
 })
 
-require('mason').setup()
-require('mason-lspconfig').setup()
+local M = {}
 
-require('plugins.lsp.keymaps')
+function M.setup()
+  require('mason').setup()
+  require('mason-lspconfig').setup()
+
+  require('plugins.lsp.keymaps').setup()
+end
+
+return M
 
 -- TBD If we need this
 -- require('lsp_signature').setup({

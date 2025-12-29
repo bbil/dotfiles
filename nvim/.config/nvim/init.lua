@@ -4,6 +4,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-require('plugins')
-require('core')
+require('plugins').setup()
+require('core').setup()
 

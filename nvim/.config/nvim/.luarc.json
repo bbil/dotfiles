@@ -1,0 +1,7 @@
+{
+  "Lua": {
+    "diagnostics": { "globals": ["vim"] },
+    "runtime": { "version": "LuaJIT" },
+    "workspace": { "library": true }
+  }
+}
