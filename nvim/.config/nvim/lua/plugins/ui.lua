@@ -108,17 +108,9 @@ local function ins_right(component)
 end
 
 ins_left {
-  function()
-    return '▊'
-  end,
-  color = { fg = colors.blue }, -- Sets highlighting of component
-  padding = { left = 0, right = 1 }, -- We don't need space before this
-}
-
-ins_left {
   -- mode component
   function()
-    return ''
+    return '▊ ⬢' 
   end,
   color = function()
     -- auto change color according to neovims mode
@@ -146,13 +138,6 @@ ins_left {
     }
     return { fg = mode_color[vim.fn.mode()] }
   end,
-  padding = { right = 1 },
-}
-
-ins_left {
-  -- filesize component
-  'filesize',
-  cond = conditions.buffer_not_empty,
 }
 
 ins_left {
@@ -205,21 +190,6 @@ ins_left {
   color = { fg = '#ffffff', gui = 'bold' },
 }
 
--- Add components to right sections
-ins_right {
-  'o:encoding', -- option component same as &encoding in viml
-  fmt = string.upper, -- I'm not sure why it's upper case either ;)
-  cond = conditions.hide_in_width,
-  color = { fg = colors.green, gui = 'bold' },
-}
-
-ins_right {
-  'fileformat',
-  fmt = string.upper,
-  icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-  color = { fg = colors.green, gui = 'bold' },
-}
-
 ins_right {
   'branch',
   icon = '',
@@ -238,14 +208,5 @@ ins_right {
   cond = conditions.hide_in_width,
 }
 
-ins_right {
-  function()
-    return '▊'
-  end,
-  color = { fg = colors.blue },
-  padding = { left = 1 },
-}
-
--- Now don't forget to initialize lualine
 lualine.setup(config)
 
