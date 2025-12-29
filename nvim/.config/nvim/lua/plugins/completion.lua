@@ -5,8 +5,6 @@ vim.pack.add({
 
 local blink = require('blink.cmp')
 
-blink.
-
 blink.setup({
   completion = {
     list = {

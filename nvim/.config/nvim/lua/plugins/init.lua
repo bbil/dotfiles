@@ -24,6 +24,7 @@ require('plugins.git')
 require('plugins.ui')
 require('plugins.flash')
 require('plugins.completion')
+require('plugins.treesitter')
 
 -- User command to update packages
 vim.api.nvim_create_user_command(

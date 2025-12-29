@@ -62,6 +62,19 @@
       "rev": "796af12a1e2aed6faba9be08e6fb5d472bab29de",
       "src": "https://github.com/sitiom/nvim-numbertoggle.git"
     },
+    "nvim-treesitter": {
+      "rev": "42fc28ba918343ebfd5565147a42a26580579482",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter.git",
+      "version": "'master'"
+    },
+    "nvim-treesitter-context": {
+      "rev": "64dd4cf3f6fd0ab17622c5ce15c91fc539c3f24a",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-context.git"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "5ca4aaa6efdcc59be46b95a3e876300cfead05ef",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git"
+    },
     "oil.nvim": {
       "rev": "bbfa7cba85967dc9dbfe0ca486fd4b17084bf846",
       "src": "https://github.com/stevearc/oil.nvim.git"
