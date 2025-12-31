@@ -25,6 +25,28 @@ local function editor_ui()
   vim.opt.termguicolors = true
 end
 
+local function whitespace_rendering()
+  -- Enable showing whitespace
+  vim.opt.list = true
+
+  -- Customize the characters used
+  vim.opt.listchars = {
+    lead = '·',
+    tab = '» ',
+    trail = '·',
+    extends = '>',
+    precedes = '<'
+  }
+
+  vim.api.nvim_create_user_command(
+    'WhitespaceToggle',
+    function()
+      vim.wo.list = not vim.wo.list
+    end,
+    {}
+  )
+end
+
 local function editor_experience()
   -- Save undo history
   vim.opt.undofile    = true
@@ -86,6 +108,7 @@ end
 function M.setup()
   disable_netrw()
   editor_ui()
+  whitespace_rendering()
   editor_experience()
   folds()
   diagnostics()
