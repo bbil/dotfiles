@@ -2,6 +2,7 @@ vim.pack.add({
   'https://github.com/mason-org/mason.nvim.git',     -- essentially a package manager for Language Servers
   'https://github.com/ray-x/lsp_signature.nvim.git', -- makes signature not suck as much
   'https://github.com/j-hui/fidget.nvim.git',        -- progress bar for LSP (has a Lua API for notifactions as well)
+  'https://github.com/folke/lazydev.nvim.git',       -- literally just for lua
 })
 
 local M = {}
@@ -25,6 +26,13 @@ function M.setup()
     bind = true,
     handler_opts = {
       border = 'rounded',
+    },
+  })
+  require('lazydev').setup({
+    library = {
+      -- See the configuration section for more details
+      -- Load luvit types when the `vim.uv` word is found
+      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
     },
   })
 
