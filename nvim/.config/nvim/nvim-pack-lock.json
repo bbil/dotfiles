@@ -13,6 +13,10 @@
       "rev": "ce8d176faa4643e026e597ae3c31db59b63cef09",
       "src": "https://github.com/catppuccin/nvim.git"
     },
+    "fidget.nvim": {
+      "rev": "64463022a1f2ff1318ab22a2ea4125ed9313a483",
+      "src": "https://github.com/j-hui/fidget.nvim.git"
+    },
     "flash.nvim": {
       "rev": "fcea7ff883235d9024dc41e638f164a450c14ca2",
       "src": "https://github.com/folke/flash.nvim.git"
@@ -33,6 +37,10 @@
       "rev": "87b1a3506211538f460786c23f98ec63ad9af4e5",
       "src": "https://github.com/ThePrimeagen/harpoon.git",
       "version": "'harpoon2'"
+    },
+    "lsp_signature.nvim": {
+      "rev": "7d3bb0a641f516f1c7fd2e47852580dadbd7a430",
+      "src": "https://github.com/ray-x/lsp_signature.nvim.git"
     },
     "lualine.nvim": {
       "rev": "47f91c416daef12db467145e16bed5bbfe00add8",

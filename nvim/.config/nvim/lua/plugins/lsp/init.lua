@@ -1,9 +1,7 @@
 vim.pack.add({
-  -- mason provides essentially a package manager for Language Servers
-  'https://github.com/mason-org/mason.nvim.git',
-  -- decide if we need this junk
-  -- Helper to make signature help stay visible
-  -- 'https://github.com/ray-x/lsp_signature.nvim.git'
+  'https://github.com/mason-org/mason.nvim.git',     -- essentially a package manager for Language Servers
+  'https://github.com/ray-x/lsp_signature.nvim.git', -- makes signature not suck as much
+  'https://github.com/j-hui/fidget.nvim.git',        -- progress bar for LSP (has a Lua API for notifactions as well)
 })
 
 local M = {}
@@ -22,19 +20,20 @@ function M.setup()
   require('mason').setup()
   require('plugins.lsp.keymaps').setup()
 
+  require('lsp_signature').setup({
+    floating_window = true,
+    bind = true,
+    handler_opts = {
+      border = 'rounded',
+    },
+  })
+
+  require('fidget').setup()
+
   enable_lsps()
 end
 
 return M
-
--- TBD If we need this
--- require('lsp_signature').setup({
---   floating_window = true,
---   bind = true,
---   handler_opts = {
---     border = 'rounded',
---   },
--- })
 
 -- return {
 --   {
