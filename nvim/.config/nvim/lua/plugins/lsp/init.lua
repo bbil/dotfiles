@@ -1,9 +1,6 @@
 vim.pack.add({
-  -- neovim provided configuration helpers
-  'https://github.com/neovim/nvim-lspconfig.git',
   -- mason provides essentially a package manager for Language Servers
   'https://github.com/mason-org/mason.nvim.git',
-  'https://github.com/mason-org/mason-lspconfig.nvim.git',
   -- decide if we need this junk
   -- Helper to make signature help stay visible
   -- 'https://github.com/ray-x/lsp_signature.nvim.git'
@@ -11,11 +8,21 @@ vim.pack.add({
 
 local M = {}
 
+-- Enable LSPs by name, need a file `lsp/<name>.lua`
+-- Which can be copy-pasted from https://github.com/neovim/nvim-lspconfig.git
+-- And make whatever configuration is needed
+local function enable_lsps()
+  vim.lsp.enable({
+    'lua_ls',
+    'rust_analyzer',
+  })
+end
+
 function M.setup()
   require('mason').setup()
-  require('mason-lspconfig').setup()
-
   require('plugins.lsp.keymaps').setup()
+
+  enable_lsps()
 end
 
 return M

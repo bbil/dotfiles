@@ -15,6 +15,9 @@ function M.setup()
           preselect = false,
           auto_insert = false,
         }
+      },
+      documentation = {
+        auto_show = true
       }
     },
     keymap = { preset = 'default' },
