@@ -64,34 +64,22 @@ local function tab_buffer_quickfix()
   km.set('n', '<leader>tp', ':tabN<CR>', { desc = '[P]rev' })
   km.set('n', '<leader>td', ':tabd<CR>', { desc = '[D]elete' })
 
-  for i = 1, 9 do
-    km.set('n', '<leader>t' .. i, i .. 'gt', { desc = tostring(i) })
-  end
-
   -- Buffers
   km.set('n', '<leader>bn', ':bn<CR>', { desc = '[N]ext' })
   km.set('n', '<leader>bp', ':bp<CR>', { desc = '[P]rev' })
   km.set('n', '<leader>bd', ':bd<CR>', { desc = '[D]elete' })
   km.set('n', '<leader>bo', ':BufOnly<CR>', { desc = '[D]elete all' })
 
-
   -- Quick Fix
-  km.set('n', '<leader>co', ':copen<CR>', { desc = 'Open' })
-  km.set('n', '<leader>cc', ':cclose<CR>', { desc = 'Open' })
-  km.set('n', '<leader>cn', ':cn<CR>', { desc = 'Next' })
-  km.set('n', '<leader>cp', ':cp<CR>', { desc = 'Previous' })
-  km.set('n', '<leader>cN', ':colder<CR>', { desc = 'Older' })
-  km.set('n', '<leader>cP', ':cnewer<CR>', { desc = 'newer' })
-  km.set('n', '[c', ':cp<CR>', { desc = ':cprevious' })
-  km.set('n', ']c', ':cn<CR>', { desc = ':cnext' })
+  km.set('n', '<leader>qo', ':copen<CR>', { desc = 'Open' })
+  km.set('n', '<leader>qc', ':cclose<CR>', { desc = 'Open' })
+  km.set('n', '<leader>qn', ':cn<CR>', { desc = 'Next' })
+  km.set('n', '<leader>qp', ':cp<CR>', { desc = 'Previous' })
+  km.set('n', '<leader>qN', ':colder<CR>', { desc = 'Older' })
+  km.set('n', '<leader>qP', ':cnewer<CR>', { desc = 'newer' })
 end
 
 local function diagnostics()
-  -- Diagnostic keymaps
-  km.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end,
-    { desc = 'Go to previous diagnostic message' })
-  km.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end,
-    { desc = 'Go to next diagnostic message' })
   km.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
   km.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 end

@@ -17,7 +17,6 @@ function M.setup()
         }
       }
     },
-
     keymap = { preset = 'default' },
     appearance = {
       nerd_font_variant = 'mono'

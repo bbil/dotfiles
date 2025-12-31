@@ -16,7 +16,7 @@ function M.setup()
 
   wk.add({ { "<leader>t", group = "tab" } })
   wk.add({ { "<leader>b", group = "buffer" } })
-  wk.add({ { '<leader>c', group = 'quickfix' } })
+  wk.add({ { '<leader>q', group = 'quickfix' } })
   wk.add({ { '<leader>h', group = 'harpoon' } })
 end
 
