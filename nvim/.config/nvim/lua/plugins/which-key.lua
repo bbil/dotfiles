@@ -14,11 +14,12 @@ function M.setup()
     { desc = "Buffer Local Keymaps (which-key)" }
   )
 
-  wk.add({ { "<leader>t", group = "tab" } })
-  wk.add({ { "<leader>b", group = "buffer" } })
-  wk.add({ { '<leader>q', group = 'quickfix' } })
-  wk.add({ { '<leader>h', group = 'harpoon' } })
+  wk.add({
+    { '<leader>t', group = 'tab' },
+    { '<leader>b', group = 'buffer' },
+    { '<leader>q', group = 'quickfix' },
+    { '<leader>h', group = 'harpoon' },
+  })
 end
 
 return M
-

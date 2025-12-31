@@ -15,7 +15,7 @@ end
 local harpoon = require('harpoon')
 local extensions = require('harpoon.extensions')
 
-local function harpoonmap(keys, func, desc)
+local function hmap(keys, func, desc)
   if desc then
     desc = 'Harpoon: ' .. desc
   end
@@ -30,26 +30,26 @@ local function create_nav_function(index)
 end
 
 local function setup_harpoon_keymaps()
-  harpoonmap('<leader>hu', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, 'UI')
-  harpoonmap('<leader>hh', function() harpoon:list():add() end, 'Mark')
+  hmap('<leader>hu', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, 'UI')
+  hmap('<leader>hh', function() harpoon:list():add() end, 'Mark')
 
   local nav_funcs = {}
   for i = 1, 5 do
     nav_funcs[i] = create_nav_function(i)
   end
 
-  harpoonmap('<A-a>', nav_funcs[1], "Nav 1")
-  harpoonmap('<A-s>', nav_funcs[2], "Nav 2")
-  harpoonmap('<A-d>', nav_funcs[3], "Nav 3")
-  harpoonmap('<A-f>', nav_funcs[4], "Nav 4")
-  harpoonmap('<leader>ha', nav_funcs[1], 'Nav 1')
-  harpoonmap('<leader>hs', nav_funcs[2], 'Nav 2')
-  harpoonmap('<leader>hd', nav_funcs[3], 'Nav 3')
-  harpoonmap('<leader>hf', nav_funcs[4], 'Nav 4')
-  harpoonmap('<leader>hg', nav_funcs[5], 'Nav 5')
+  hmap('<A-a>', nav_funcs[1], "Nav 1")
+  hmap('<A-s>', nav_funcs[2], "Nav 2")
+  hmap('<A-d>', nav_funcs[3], "Nav 3")
+  hmap('<A-f>', nav_funcs[4], "Nav 4")
+  hmap('<leader>ha', nav_funcs[1], 'Nav 1')
+  hmap('<leader>hs', nav_funcs[2], 'Nav 2')
+  hmap('<leader>hd', nav_funcs[3], 'Nav 3')
+  hmap('<leader>hf', nav_funcs[4], 'Nav 4')
+  hmap('<leader>hg', nav_funcs[5], 'Nav 5')
 
-  harpoonmap('<leader>hp', function() harpoon:list():prev() end, 'Prev')
-  harpoonmap('<leader>hn', function() harpoon:list():next() end, 'Next')
+  hmap('<leader>hp', function() harpoon:list():prev() end, 'Prev')
+  hmap('<leader>hn', function() harpoon:list():next() end, 'Next')
 end
 
 local function setup_harpoon_extensions()

@@ -1,5 +1,10 @@
 local M = {}
 
+
+local function toggle_inlay_hints()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end
+
 function M.setup()
   local km = vim.keymap -- just an alias
 
@@ -10,7 +15,7 @@ function M.setup()
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
-      local opts = { buffer = ev.buffer, silent = true }
+      local opts = { buffer = ev.buf, silent = true }
 
       opts.desc = 'Signature Help'
       km.set('n', 'gK', vim.lsp.buf.signature_help, opts)
@@ -26,6 +31,8 @@ function M.setup()
 
       opts.desc = 'Format Document'
       km.set('n', '<leader>lf', vim.lsp.buf.format, opts)
+
+      vim.api.nvim_buf_create_user_command(ev.buf, 'LspInlayHints', toggle_inlay_hints, {})
     end
   })
 end
