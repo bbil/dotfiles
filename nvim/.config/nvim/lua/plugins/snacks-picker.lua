@@ -1,7 +1,7 @@
 -- keymaps for snacks.picker
 -- Snacks plugin needs to be setup first
 
-local km = vim.keymap -- just an alias
+local km = vim.keymap
 
 local M = {}
 
@@ -53,7 +53,6 @@ local function search()
   km.set('n', '<leader>sl', function() Snacks.picker.loclist() end, { desc = 'Location List' })
   km.set('n', '<leader>sm', function() Snacks.picker.marks() end, { desc = 'Marks' })
   km.set('n', '<leader>sM', function() Snacks.picker.man() end, { desc = 'Man Pages' })
-  -- km.set('n', '<leader>sp', function() Snacks.picker.lazy() end, {desc = 'Search for Plugin Spec' })
   km.set('n', '<leader>sq', function() Snacks.picker.qflist() end, { desc = 'Quickfix List' })
 end
 

@@ -23,6 +23,10 @@ local function editor_ui()
   vim.opt.breakindent   = true
 
   vim.opt.termguicolors = true
+
+  -- make splits feel more natural
+  vim.opt.splitright    = true
+  vim.opt.splitbelow    = true
 end
 
 local function whitespace_rendering()
