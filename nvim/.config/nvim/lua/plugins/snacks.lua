@@ -10,7 +10,9 @@ local M = {}
 
 function M.setup()
   require('snacks').setup({
-    bigfile = { enabled = false },
+    -- prevent LSP and Treesitter from trying to be used
+    -- no reason not to have this I think
+    bigfile = { enabled = true },
     dashboard = {
       -- default dashboard config other than turning off startup section crash from unmmet deps
       -- https://github.com/folke/snacks.nvim/issues/1778 (closed by bot)
@@ -22,7 +24,7 @@ function M.setup()
       },
     },
     explorer = { enabled = false },
-    indent = { enabled = false },
+    indent = { enabled = true },
     input = { enabled = false },
     notifier = { enabled = false },
     quickfile = { enabled = false },

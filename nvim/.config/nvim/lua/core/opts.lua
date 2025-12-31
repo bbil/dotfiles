@@ -27,11 +27,15 @@ local function editor_ui()
   -- make splits feel more natural
   vim.opt.splitright    = true
   vim.opt.splitbelow    = true
+
+  vim.opt.fillchars = {
+    fold = ' '
+  }
 end
 
 local function whitespace_rendering()
-  -- Enable showing whitespace
-  vim.opt.list = true
+  -- showing whitespace
+  vim.opt.list = false
 
   -- Customize the characters used
   vim.opt.listchars = {
@@ -73,25 +77,10 @@ end
 
 -- Fold using TreeSitter; fallback to indent with :ToggleFoldMethod
 local function folds()
-  vim.opt.foldmethod = "expr"
-  vim.opt.foldexpr   = "v:lua.vim.treesitter.foldexpr()"
-  vim.opt.foldenable = false
+  local core_folds = require('core.folds')
 
-  vim.api.nvim_create_user_command('ToggleFoldMethod', function()
-    if vim.wo.foldmethod == "expr" then
-      vim.wo.foldmethod = "indent"
-      print("Folding: Switched to Indent")
-    else
-      vim.wo.foldmethod = "expr"
-      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      print("Folding: Switched to Treesitter")
-    end
-
-    -- Force Neovim to re-evaluate folds
-    vim.schedule(function()
-      vim.cmd("normal! zx")
-    end)
-  end, {})
+  core_folds.fold_defaults()
+  core_folds.create_autocommand_lsp()
 end
 
 local function diagnostics()

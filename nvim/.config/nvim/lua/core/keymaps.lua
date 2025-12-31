@@ -9,6 +9,8 @@ local function basic()
   km.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
   km.set("n", "<leader>:", ":lua ", { noremap = true })
+
+  km.set('n', '<leader>tw', '<CMD>WhitespaceToggle<CR>', { desc = 'Toggle Whitespace' })
 end
 
 local function keep_things_centered()
@@ -22,7 +24,6 @@ local function keep_things_centered()
   km.set('n', 'n', 'nzzzv')
   km.set('n', 'N', 'Nzzzv')
 end
-
 
 local function clipboard_management()
   -- yank relative filepath to system clipboard
@@ -84,6 +85,10 @@ local function diagnostics()
   km.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 end
 
+local function folds()
+  require('core.folds').fold_method_keymaps()
+end
+
 function M.setup()
   basic()
   keep_things_centered()
@@ -91,6 +96,7 @@ function M.setup()
   paragraph_jumping()
   tab_buffer_quickfix()
   diagnostics()
+  folds()
 end
 
 return M
