@@ -34,6 +34,7 @@ local modules = {
   'plugins.snacks-picker',
   'plugins.treesitter',
   'plugins.ui',
+  'plugins.ui-lualine',
   'plugins.which-key',
 }
 
