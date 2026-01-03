@@ -25,7 +25,7 @@ function M.setup()
     },
     explorer = { enabled = false },
     indent = { enabled = true },
-    input = { enabled = false },
+    input = { enabled = true },
     notifier = { enabled = false },
     quickfile = { enabled = false },
     scope = { enabled = false },
