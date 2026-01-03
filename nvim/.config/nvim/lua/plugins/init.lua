@@ -9,6 +9,7 @@ vim.pack.add({
   'https://github.com/sitiom/nvim-numbertoggle.git',
   'https://github.com/christoomey/vim-tmux-navigator.git',
   'https://github.com/numtostr/BufOnly.nvim.git',
+  'https://github.com/MeanderingProgrammer/render-markdown.nvim.git'
 })
 
 local M = {}

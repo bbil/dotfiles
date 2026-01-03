@@ -13,17 +13,18 @@ M.required_parsers = {
   'go',
   'html',
   'lua',
+  'markdown',
   'python',
   'rust',
   'tsx',
   'typescript',
   'vim',
   'vimdoc',
+
   -- Elixir
   'elixir',
   'eex',
   'heex',
-  'surface',
   'erlang',
 }
 
