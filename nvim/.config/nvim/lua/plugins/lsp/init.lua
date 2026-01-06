@@ -12,8 +12,21 @@ local M = {}
 -- And make whatever configuration is needed
 local function enable_lsps()
   vim.lsp.enable({
+    'expert',
     'lua_ls',
     'rust_analyzer',
+  })
+end
+
+-- taken from nvim-lspconfig
+-- turns out this wasn't built into NeoVim
+local function lsp_helpers()
+  vim.api.nvim_create_user_command('LspInfo', ':checkhealth vim.lsp', { desc = 'Alias to `:checkhealth vim.lsp`' })
+
+  vim.api.nvim_create_user_command('LspLog', function()
+    vim.cmd(string.format('tabnew %s', vim.lsp.log.get_filename()))
+  end, {
+    desc = 'Opens the Nvim LSP client log.',
   })
 end
 
@@ -39,6 +52,7 @@ function M.setup()
   require('fidget').setup()
 
   enable_lsps()
+  lsp_helpers()
 end
 
 return M
