@@ -5,6 +5,10 @@ local M = {}
 function M.setup()
   local wk = require('which-key')
 
+  wk.setup({
+    preset = 'helix',
+  })
+
   vim.keymap.set(
     'n',
     '<leader>?',
