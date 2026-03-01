@@ -1,78 +1,56 @@
-return {
+-- common dependencies here
+vim.pack.add({
+  'https://github.com/nvim-lua/plenary.nvim.git',
+})
 
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
+-- simple plugins that don't need config or setup
+vim.pack.add({
+  'https://github.com/tpope/vim-sleuth.git',
+  'https://github.com/sitiom/nvim-numbertoggle.git',
+  'https://github.com/christoomey/vim-tmux-navigator.git',
+  'https://github.com/numtostr/BufOnly.nvim.git',
+  'https://github.com/MeanderingProgrammer/render-markdown.nvim.git'
+})
 
-  -- Automatically toggle relative line number
-  'sitiom/nvim-numbertoggle',
+local M = {}
 
-  -- Vim + Tmux navigation integration
-  { 'christoomey/vim-tmux-navigator', lazy = false },
+local function create_pack_update_cmd()
+  vim.api.nvim_create_user_command(
+    'PackUpdate',
+    function()
+      vim.pack.update()
+    end,
+    { desc = 'Update packages' }
+  )
+end
 
-  -- Useful plugin to show you pending keybinds.
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
-    keys = {
-      {
-        "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
-        desc = "Buffer Local Keymaps (which-key)",
-      },
-    },
-  },
-
-  -- Delete all unmodified buffers
-  { 'numtostr/BufOnly.nvim',          cmd = 'BufOnly' },
-
-  {
-    'folke/flash.nvim',
-    opts = {
-      search = {
-        multi_window = true,
-      },
-    },
-
-    keys = {
-      { "s", mode = { "n", "o", "x" }, function() require("flash").jump() end,       desc = "Flash" },
-      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash" },
-      {
-        "R",
-        mode = { "o", "x" },
-        function() require("flash").treesitter_search() end,
-        desc = "Treesitter Search"
-      },
-      {
-        "<c-s>",
-        mode = { "c" },
-        function() require("flash").toggle() end,
-        desc = "Toggle Flash Search"
-      },
-    },
-  },
-
-  {
-    'xorid/swap-split.nvim',
-    opts = {
-      ignore_filetypes = { 'NvimTree' }
-    },
-    keys = {
-      -- Overwrite swap current with next keybinding
-      { '<C-w>x', mode = 'n', '<cmd>SwapSplit<CR>', desc = "swap" },
-    },
-    config = function(_, opts)
-      require('swap-split').setup(opts)
-
-      -- Set color of Picker to match default picker of NvimTree
-      vim.api.nvim_command('hi SwapSplitStatusLine guifg=#ededed guibg=#4493c8 gui=bold ctermfg=White ctermbg=Cyan')
-    end
-  }
+local modules = {
+  'plugins.completion',
+  'plugins.file-nav',
+  'plugins.flash',
+  'plugins.git',
+  'plugins.lsp',
+  'plugins.mini',
+  'plugins.snacks',
+  'plugins.snacks-picker',
+  'plugins.treesitter',
+  'plugins.ui',
+  'plugins.ui-lualine',
+  'plugins.which-key',
 }
+
+function M.setup()
+  create_pack_update_cmd()
+
+  -- load all modules and call setup function
+  for _, mod in ipairs(modules) do
+    local ok, plugin = pcall(require, mod)
+    if ok and plugin.setup then
+      plugin.setup()
+    else
+      vim.notify("Failed to load plugin module: " .. mod, vim.log.levels.ERROR)
+    end
+  end
+end
+
+return M
