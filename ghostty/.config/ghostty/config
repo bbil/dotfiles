@@ -30,4 +30,5 @@ window-theme = system
 
 custom-shader = shaders/cursor_smear.glsl
 
+# Allow multi-line prompts in Claude Code / CLI AI tools
 keybind = shift+enter=text:\x1b\r
