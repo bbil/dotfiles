@@ -18,11 +18,12 @@ command = zsh
 
 # Mac Specific
 macos-option-as-alt = true
+macos-titlebar-proxy-icon = hidden
 
 # Theming & Window
-# sets zero decoration (may need to use keybind for window manager to move window around)
-window-decoration = none
 background-opacity = 0.90
+title = " "
+shell-integration-features = cursor,sudo,no-title
 
 theme = dark:Catppuccin Macchiato,light:Catppuccin Latte
 window-theme = system
