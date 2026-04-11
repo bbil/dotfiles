@@ -86,7 +86,7 @@ local function diagnostics()
 end
 
 local function folds()
-  require('core.folds').fold_method_keymaps()
+  require('folds').fold_method_keymaps()
 end
 
 function M.setup()

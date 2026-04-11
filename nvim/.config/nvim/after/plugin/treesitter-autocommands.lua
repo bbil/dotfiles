@@ -3,7 +3,7 @@
 --   It's for this reason we have this in the after/ directory
 --   This registration happens in the plugin/ directory of that package, so I have no way to force it to execute earlier for me
 --   And it sets up this globabl state I need for get_filetypes
--- note: foldexpr is already set in 'core.folds', not via this autocmd
+-- note: foldexpr is already set in 'folds', not via this autocmd
 --
 local required_parsers = require('plugin.treesitter').required_parsers
 

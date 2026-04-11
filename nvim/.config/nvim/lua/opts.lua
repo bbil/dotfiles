@@ -77,7 +77,7 @@ end
 
 -- Fold using TreeSitter; fallback to indent with :ToggleFoldMethod
 local function folds()
-  local core_folds = require('core.folds')
+  local core_folds = require('folds')
 
   core_folds.fold_defaults()
   core_folds.create_autocommand_lsp()
