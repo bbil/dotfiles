@@ -4,33 +4,9 @@ vim.pack.add({
   'https://github.com/nvim-treesitter/nvim-treesitter-context.git',
 })
 
-local M = {}
-
--- required_parses gets used to setup auto commands to enable treesitter for all languages
-M.required_parsers = {
-  'bash',
-  'c',
-  'cpp',
-  'go',
-  'html',
-  'lua',
-  'markdown',
-  'python',
-  'rust',
-  'tsx',
-  'typescript',
-  'vim',
-  'vimdoc',
-
-  -- Elixir
-  'elixir',
-  'eex',
-  'heex',
-  'erlang',
-}
 
 local function install_ts_grammars()
-  require('nvim-treesitter').install(M.required_parsers)
+  require('nvim-treesitter').install(require('treesitter-parsers'))
 end
 
 local function setup_ts_textobjects()
