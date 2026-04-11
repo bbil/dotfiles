@@ -6,6 +6,7 @@ vim.pack.add({
 
 local M = {}
 
+-- required_parses gets used to setup auto commands to enable treesitter for all languages
 M.required_parsers = {
   'bash',
   'c',
@@ -132,13 +133,11 @@ local function ts_textobjects_keymaps()
   -- end)
 end
 
-function M.setup()
-  install_ts_grammars()
-  setup_ts_textobjects()
-  ts_textobjects_keymaps()
+install_ts_grammars()
+setup_ts_textobjects()
+ts_textobjects_keymaps()
 
-  -- Also see after/plugin/treesitter-autocommands.lua
-  -- For auto commands to start treesitter for all relevant filetypes given M.required_parsers
-end
+-- Also see after/plugin/treesitter-autocommands.lua
+-- For auto commands to start treesitter for all relevant filetypes given M.required_parsers
 
 return M

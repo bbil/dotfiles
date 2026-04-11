@@ -2,10 +2,16 @@
 # EXTENDED_HISTORY adds timestamps to your history entries.
 # autocd allows you to change directories without typing cd.
 # compinit initializes the Zsh completion system.
-export HISTSIZE=1000000000
+export HISTSIZE=100000
 export SAVEHIST=$HISTSIZE
+HISTFILE=~/.zsh_history
+
 setopt EXTENDED_HISTORY
-setopt autocd
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+
 autoload -U compinit; compinit
 
 source <(fzf --zsh)

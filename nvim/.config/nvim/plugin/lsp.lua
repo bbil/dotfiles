@@ -5,8 +5,6 @@ vim.pack.add({
   'https://github.com/folke/lazydev.nvim.git',       -- literally just for lua
 })
 
-local M = {}
-
 -- Enable LSPs by name, need a file `lsp/<name>.lua`
 -- Which can be copy-pasted from https://github.com/neovim/nvim-lspconfig.git
 -- And make whatever configuration is needed
@@ -30,32 +28,27 @@ local function lsp_helpers()
   })
 end
 
-function M.setup()
-  require('mason').setup()
-  require('plugins.lsp.keymaps').setup()
+require('mason').setup()
 
-  require('lsp_signature').setup({
-    floating_window = true,
-    bind = true,
-    handler_opts = {
-      border = 'rounded',
-    },
-  })
-  require('lazydev').setup({
-    library = {
-      -- See the configuration section for more details
-      -- Load luvit types when the `vim.uv` word is found
-      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-    },
-  })
+require('lsp_signature').setup({
+  floating_window = true,
+  bind = true,
+  handler_opts = {
+    border = 'rounded',
+  },
+})
+require('lazydev').setup({
+  library = {
+    -- See the configuration section for more details
+    -- Load luvit types when the `vim.uv` word is found
+    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+  },
+})
 
-  require('fidget').setup()
+require('fidget').setup({})
 
-  enable_lsps()
-  lsp_helpers()
-end
-
-return M
+enable_lsps()
+lsp_helpers()
 
 -- return {
 --   {

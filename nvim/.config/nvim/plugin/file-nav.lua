@@ -4,8 +4,6 @@ vim.pack.add({
   'https://github.com/xorid/swap-split.nvim.git'
 })
 
-local M = {}
-
 local function setup_swap_split()
   vim.keymap.set('n', '<C-w>x', '<CMD>SwapSplit<CR>', { desc = "swap" })
   -- Set color of Picker to match default picker of NvimTree
@@ -83,10 +81,6 @@ local function setup_oil()
   vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = "Oil" })
 end
 
-function M.setup()
-  setup_swap_split()
-  setup_harpoon()
-  setup_oil()
-end
-
-return M
+setup_swap_split()
+setup_harpoon()
+setup_oil()

@@ -4,6 +4,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-require('plugins').setup()
 require('core').setup()
 
+vim.api.nvim_create_user_command('PackUpdate', function() vim.pack.update() end, { desc = 'Update packages' })
