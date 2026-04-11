@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     km.set('n', '<leader>la', vim.lsp.buf.code_action, opts)
 
     opts.desc = 'Run Code Lens'
-    km.set('n', '<leader>la', vim.lsp.codelens.run, opts)
+    km.set('n', '<leader>ll', vim.lsp.codelens.run, opts)
 
     opts.desc = 'Rename'
     km.set('n', '<leader>lr', vim.lsp.buf.rename, opts)

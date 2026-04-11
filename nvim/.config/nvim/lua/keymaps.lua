@@ -5,7 +5,6 @@ local function basic()
   -- Easier Esc
   km.set('i', 'jj', '<Esc>')
 
-  -- TODO: What does this do. I have leader set to space, so does this do nothing?
   km.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
   km.set("n", "<leader>:", ":lua ", { noremap = true })
@@ -31,7 +30,7 @@ local function clipboard_management()
 
   -- Convenience mappings to yank to system clipboard register
   km.set('n', '<leader>y', '\"+y')
-  km.set('n', '<leader>Y', '\"+y')
+  km.set('n', '<leader>Y', '\"+Y')
   km.set('v', '<leader>y', '\"+y')
 
   -- Convenience mappings to paste from system clipboard register
@@ -69,20 +68,19 @@ local function tab_buffer_quickfix()
   km.set('n', '<leader>bn', ':bn<CR>', { desc = '[N]ext' })
   km.set('n', '<leader>bp', ':bp<CR>', { desc = '[P]rev' })
   km.set('n', '<leader>bd', ':bd<CR>', { desc = '[D]elete' })
-  km.set('n', '<leader>bo', ':BufOnly<CR>', { desc = '[D]elete all' })
+  km.set('n', '<leader>bo', ':BufOnly<CR>', { desc = '[O]nly' })
 
   -- Quick Fix
   km.set('n', '<leader>qo', ':copen<CR>', { desc = 'Open' })
-  km.set('n', '<leader>qc', ':cclose<CR>', { desc = 'Open' })
+  km.set('n', '<leader>qc', ':cclose<CR>', { desc = 'Close' })
   km.set('n', '<leader>qn', ':cn<CR>', { desc = 'Next' })
   km.set('n', '<leader>qp', ':cp<CR>', { desc = 'Previous' })
   km.set('n', '<leader>qN', ':colder<CR>', { desc = 'Older' })
-  km.set('n', '<leader>qP', ':cnewer<CR>', { desc = 'newer' })
+  km.set('n', '<leader>qP', ':cnewer<CR>', { desc = 'Newer' })
 end
 
 local function diagnostics()
   km.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-  km.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 end
 
 local function folds()

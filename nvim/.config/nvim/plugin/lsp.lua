@@ -49,36 +49,3 @@ require('fidget').setup({})
 
 enable_lsps()
 lsp_helpers()
-
--- return {
---   {
---     'elixir-tools/elixir-tools.nvim',
---     -- ft = 'elixir',
---     version = "*",
---     event = { "BufReadPre", "BufNewFile" },
---     dependencies = {
---       'nvim-lua/plenary.nvim',
---       'hrsh7th/cmp-nvim-lsp',
---     },
---     config = function()
---       local elixir = require("elixir")
---
---       elixir.setup({
---         -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
---         nextls = {
---           enable = false,
---           -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
---           on_attach = function(client, buffer)
---             require('plugins.lsp.keymaps').on_attach(client, buffer)
---           end
---         },
---         elixirls = {
---           enable = true,
---           on_attach = function(client, buffer)
---             require('plugins.lsp.keymaps').on_attach(client, buffer)
---           end,
---         }
---       })
---     end
---   },
--- }

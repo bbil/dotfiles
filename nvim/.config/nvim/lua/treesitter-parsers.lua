@@ -1,5 +1,6 @@
 -- List of treesitter parsers automatically installed by nvim-treesitter
 -- Also used to setup auto commands, to enable treesitter automatically
+
 return {
   'bash',
   'c',

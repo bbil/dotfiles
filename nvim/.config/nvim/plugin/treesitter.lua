@@ -115,5 +115,3 @@ ts_textobjects_keymaps()
 
 -- Also see after/plugin/treesitter-autocommands.lua
 -- For auto commands to start treesitter for all relevant filetypes given M.required_parsers
-
-return M

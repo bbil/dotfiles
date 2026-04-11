@@ -16,8 +16,14 @@ vim.keymap.set(
 )
 
 wk.add({
-  { '<leader>t', group = 'tab' },
   { '<leader>b', group = 'buffer' },
-  { '<leader>q', group = 'quickfix' },
+  { '<leader>f', group = 'find' },
+  { '<leader>g', group = 'git' },
   { '<leader>h', group = 'harpoon' },
+  { '<leader>l', group = 'lsp' },
+  { '<leader>q', group = 'quickfix' },
+  { '<leader>s', group = 'search' },
+  { '<leader>sg', group = 'git' },
+  { '<leader>t', group = 'tab' },
+  { '<leader>z', group = 'folds' },
 })

@@ -1,3 +1,7 @@
+-- Note: This lua module is not called from init.lua
+--       It's functions are called adhoc in other /lua modules
+--       I am too lazy to figure out why that is the case
+
 local M = {}
 
 _G.my_ui = _G.my_ui or {}
