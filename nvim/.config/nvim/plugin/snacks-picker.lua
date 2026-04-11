@@ -3,8 +3,6 @@
 
 local km = vim.keymap
 
-local M = {}
-
 local function top_pickers_and_explorer()
   km.set('n', '<leader><space>', function() Snacks.picker.files() end, { desc = 'Find Files' })
   km.set('n', '<leader>,', function() Snacks.picker.buffers() end, { desc = 'Buffers' })
@@ -74,15 +72,10 @@ local function less_used()
   km.set('n', '<leader>uC', function() Snacks.picker.colorschemes() end, { desc = 'Colorschemes' })
 end
 
-function M.setup()
-  top_pickers_and_explorer()
-  find()
-  git()
-  grep()
-  search()
-  lsp()
-  less_used()
-end
-
-return M
-
+top_pickers_and_explorer()
+find()
+git()
+grep()
+search()
+lsp()
+less_used()

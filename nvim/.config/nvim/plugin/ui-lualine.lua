@@ -2,8 +2,6 @@ vim.pack.add({
   'https://github.com/nvim-lualine/lualine.nvim.git',
 })
 
-local M = {}
-
 -- Eviline config for lualine
 -- Author: shadmansaleh
 -- Credit: glepnir
@@ -143,7 +141,7 @@ local function setup_lualine()
     },
   }
 
-    -- Lsp server name .
+  -- Lsp server name .
   ins_right {
     function()
       local msg = ''
@@ -190,8 +188,4 @@ local function setup_lualine()
   lualine.setup(config)
 end
 
-function M.setup()
-  setup_lualine()
-end
-
-return M
+setup_lualine()

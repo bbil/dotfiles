@@ -5,17 +5,13 @@
       "src": "https://github.com/numtostr/BufOnly.nvim.git"
     },
     "blink.cmp": {
-      "rev": "451168851e8e2466bc97ee3e026c3dcb9141ce07",
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/saghen/blink.cmp.git",
       "version": "1.0.0 - 2.0.0"
     },
     "catppuccin": {
-      "rev": "16408d203973da7e43fab87c6f9d3bf7fa98fa8b",
+      "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
       "src": "https://github.com/catppuccin/nvim.git"
-    },
-    "dashboard-nvim": {
-      "rev": "62a10d9d55132b338dd742afc3c8a2683f3dd426",
-      "src": "https://github.com/nvimdev/dashboard-nvim.git"
     },
     "fidget.nvim": {
       "rev": "889e2e96edef4e144965571d46f7a77bcc4d0ddf",
@@ -34,7 +30,7 @@
       "src": "https://github.com/rhysd/git-messenger.vim.git"
     },
     "gitsigns.nvim": {
-      "rev": "944ef13cc8d8fe8b846c91f36041c8dfb85ca000",
+      "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
     },
     "harpoon": {
@@ -47,31 +43,23 @@
       "src": "https://github.com/folke/lazydev.nvim.git"
     },
     "lsp_signature.nvim": {
-      "rev": "af7e4074d85d785cf6614352ba9ad3b28a1f8a56",
+      "rev": "a65b38f260cc3470a05b4afb84c8d868617d476d",
       "src": "https://github.com/ray-x/lsp_signature.nvim.git"
     },
     "lualine.nvim": {
-      "rev": "74114f0df664f14d7c228945693ba68a3b70a794",
+      "rev": "f5d2a8570f8b736ddb9bb4be504355bcd6e15ec8",
       "src": "https://github.com/nvim-lualine/lualine.nvim.git"
     },
-    "mason-lspconfig.nvim": {
-      "rev": "25f609e7fca78af7cede4f9fa3af8a94b1c4950b",
-      "src": "https://github.com/mason-org/mason-lspconfig.nvim.git"
-    },
     "mason.nvim": {
-      "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
+      "rev": "b03fb0f20bc1d43daf558cda981a2be22e73ac42",
       "src": "https://github.com/mason-org/mason.nvim.git"
     },
     "mini.nvim": {
-      "rev": "402ee6c6ec8ea44b22330446c8fb4e615fd3953e",
+      "rev": "69b7433355664cf76898eb86a12a019f39bd86d1",
       "src": "https://github.com/echasnovski/mini.nvim.git"
     },
-    "nvim-lspconfig": {
-      "rev": "9ccd58a7949091c0cc2777d4e92a45a209c808c1",
-      "src": "https://github.com/neovim/nvim-lspconfig.git"
-    },
     "nvim-numbertoggle": {
-      "rev": "796af12a1e2aed6faba9be08e6fb5d472bab29de",
+      "rev": "c5c0d305aee8532b5515914a08396b9154394c55",
       "src": "https://github.com/sitiom/nvim-numbertoggle.git"
     },
     "nvim-treesitter": {
@@ -84,7 +72,7 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-context.git"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "93d60a475f0b08a8eceb99255863977d3a25f310",
+      "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
       "version": "'main'"
     },
@@ -93,11 +81,11 @@
       "src": "https://github.com/stevearc/oil.nvim.git"
     },
     "plenary.nvim": {
-      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim.git"
     },
     "render-markdown.nvim": {
-      "rev": "c7188a8f9d2953696b6303caccbf39c51fa2c1b1",
+      "rev": "54d4b5431e9634ee3d8d30784e017239b5b89d41",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim.git"
     },
     "snacks.nvim": {

@@ -5,8 +5,6 @@ vim.pack.add({
   { src = 'https://github.com/catppuccin/nvim.git', name = 'catppuccin' },
 })
 
-local M = {}
-
 local function setup_tint()
   require('tint').setup({
     tint = -15,                                                 -- Darken colors, use a positive value to brighten
@@ -29,9 +27,5 @@ local function default_colorscheme()
   vim.cmd.colorscheme('tokyonight-moon')
 end
 
-function M.setup()
-  setup_tint()
-  default_colorscheme()
-end
-
-return M
+setup_tint()
+default_colorscheme()

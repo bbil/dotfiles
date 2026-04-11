@@ -5,7 +5,7 @@
 --   And it sets up this globabl state I need for get_filetypes
 -- note: foldexpr is already set in 'core.folds', not via this autocmd
 --
-local required_parsers = require('plugins.treesitter').required_parsers
+local required_parsers = require('plugin.treesitter').required_parsers
 
 for _, parser in ipairs(required_parsers) do
   local file_types = vim.treesitter.language.get_filetypes(parser)
