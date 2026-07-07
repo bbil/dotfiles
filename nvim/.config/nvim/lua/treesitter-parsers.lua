@@ -21,4 +21,9 @@ return {
   'eex',
   'heex',
   'erlang',
+
+  -- Java
+  'java',
+  'javadoc',
+  'scala',
 }

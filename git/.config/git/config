@@ -2,7 +2,7 @@
 	defaultBranch = main
 [core]
 	editor = nvim
-	excludesFile = ~/.config/git/.gitignore
+	excludesFile = ~/.config/git/ignore
 [user]
 	name = bbil
 	email = me@brandonbil.xyz

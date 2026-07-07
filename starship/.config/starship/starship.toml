@@ -12,27 +12,24 @@ $os\
 $username\
 [](bg:peach fg:red)\
 $directory\
-[](bg:yellow fg:peach)\
+[ ](bg:yellow fg:peach)\
 $git_branch\
 $git_status\
-[](fg:yellow bg:green)\
-$c\
-$rust\
-$golang\
-$nodejs\
-$php\
-$java\
-$kotlin\
-$haskell\
-$python\
-[](fg:green bg:sapphire)\
-$conda\
-[](fg:sapphire bg:lavender)\
-$time\
-[ ](fg:lavender)\
-$cmd_duration\
+[](fg:yellow)\
 $line_break\
 $character"""
+
+
+# [](fg:yellow bg:green)\
+# $c\
+# $rust\
+# $golang\
+# $nodejs\
+# $php\
+# $java\
+# $kotlin\
+# $haskell\
+# $python\
 
 [os]
 disabled = false
@@ -69,8 +66,9 @@ format = '[ $user]($style)'
 
 [directory]
 style = "bg:peach fg:crust"
-format = "[ $path ]($style)"
-truncation_length = 3
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+truncate_to_repo = false
+truncation_length = 5
 truncation_symbol = "…/"
 
 [directory.substitutions]

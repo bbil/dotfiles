@@ -17,7 +17,9 @@ autoload -U compinit; compinit
 source <(fzf --zsh)
 
 # User configuration
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
+
 export PATH=$PATH:~/.local/bin
 
 # Common aliases for colors
