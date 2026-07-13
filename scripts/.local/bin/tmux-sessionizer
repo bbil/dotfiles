@@ -10,56 +10,60 @@
 # 2. Find or Create tmux session with this name
 # 3. Attach to the session
 
-# Use sed to show ~ instead of $HOME
-# But because tmux doesn't understand how to open directories with ~, need to reverse the process after selection
-# TODO is there a better way to do this, does fzf allow to display a different value than what the underlying value is?
+# Each entry is tab-delimited: real_path<TAB>display_label
+# fzf --with-nth 2 shows only the label; cut -f1 recovers the real path after selection.
 
 selected=$(
     (
-        tmux list-sessions -F ":#{session_name}";
-        find  ~/work ~/git -mindepth 1 -maxdepth 1 -type d | sed "s|$HOME|~|g"
+        printf 'SKIP\t\033[1m── Sessions ──\033[0m\n'
+        tmux list-sessions -F $':#{session_name}\t:#{session_name}' 2>/dev/null;
+
+        printf 'SKIP\t\033[1m── Worktrees ──\033[0m\n'
+        find ~/work ~/git -mindepth 4 -maxdepth 4 -path '*/.claude/worktrees/*' -type d 2>/dev/null |
+            while IFS= read -r wt; do
+                repo=$(basename "$(dirname "$(dirname "$(dirname "$wt")")")")
+                name=$(basename "$wt")
+                printf '%s\t%s\n' "$wt" "$repo/$name"
+            done;
+
+        printf 'SKIP\t\033[1m── Directories ──\033[0m\n'
+        find ~/work ~/git -mindepth 1 -maxdepth 1 -type d |
+            while IFS= read -r dir; do
+                printf '%s\t%s\n' "$dir" "$(echo "$dir" | sed "s|$HOME|~|g")"
+            done
     ) |
-        fzf-tmux -p 50% --reverse | sed "s|~|$HOME|g"
+        fzf-tmux -p 50% --reverse --ansi --delimiter $'\t' --with-nth 2 |
+        cut -f1
 )
 
-if [[ -z $selected ]]; then
+if [[ -z $selected ]] || [[ $selected == "SKIP" ]]; then
     exit 0
 fi
 
 # Get or create session
 if [[ $selected == *":"* ]]; then
-  # selected comes from list-sessions, so we know this session exists
-  # therefore, skip tmux new-session
-  session=$(echo $selected | awk '{print $1}')
-  session=${session//:/}
+    # selected comes from list-sessions, so we know this session exists
+    session=$(echo "$selected" | awk '{print $1}')
+    session=${session//:/}
+elif [[ $selected == *"/.claude/worktrees/"* ]]; then
+    repo=$(basename "$(dirname "$(dirname "$(dirname "$selected")")")")
+    name=$(basename "$selected")
+    session=$(echo "${repo}_${name}" | tr . _)
+    if ! tmux has-session -t="$session" 2>/dev/null; then
+        tmux new-session -d -s "$session" -c "$selected"
+    fi
 else
-  # RESULT is a path
-  session=$(basename "$selected" | tr . _)
-
-  if ! tmux has-session -t=$session 2> /dev/null; then
-    tmux new-session -d -s $session -c "$selected"
-  fi
+    session=$(basename "$selected" | tr . _)
+    if ! tmux has-session -t="$session" 2>/dev/null; then
+        tmux new-session -d -s "$session" -c "$selected"
+    fi
 fi
-
-
-# tmux_running=$(pgrep tmux)
-#
-# # if tmux is not running -- create new session you are automatically attached
-# if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-#     tmux new-session -s $selected_name -c $selected
-#     exit 0
-# fi
-#
-# # Create session if it does not exist
-# if ! tmux has-session -t=$selected_name 2> /dev/null; then
-#     tmux new-session -ds $selected_name -c $selected
-# fi
 
 # if we are currently in tmux -- based on $TMUX being set, switch-client in place
 # otherwise we need to use attach command
 if [[ $TMUX ]]; then
-    tmux switch-client -t $session
+    tmux switch-client -t "$session"
 else
-    tmux attach -t $session
+    tmux attach -t "$session"
 fi
 
