@@ -13,6 +13,8 @@ local function enable_lsps()
     'expert',
     'lua_ls',
     'rust_analyzer',
+    'jdtls',
+    'tsc'
   })
 end
 

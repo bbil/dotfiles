@@ -5,3 +5,9 @@
 .scala-build/
 
 .vscode/
+
+.claude/worktrees
+
+.DS_Store
+
+
