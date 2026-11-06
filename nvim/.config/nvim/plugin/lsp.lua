@@ -14,7 +14,8 @@ local function enable_lsps()
     'lua_ls',
     'rust_analyzer',
     'jdtls',
-    'tsc'
+    'tsc',
+    'gopls',
   })
 end
 

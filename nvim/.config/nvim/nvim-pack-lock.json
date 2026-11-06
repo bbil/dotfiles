@@ -55,7 +55,7 @@
       "src": "https://github.com/mason-org/mason.nvim.git"
     },
     "mini.nvim": {
-      "rev": "6d5a29e86a7352739506c28e0bc50fe214b5216f",
+      "rev": "a321b535c75ca88ba7fddfd8eb5b583fbda50dd6",
       "src": "https://github.com/echasnovski/mini.nvim.git"
     },
     "nvim-numbertoggle": {
